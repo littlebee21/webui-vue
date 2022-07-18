@@ -249,7 +249,7 @@ export default {
 
     .helper-menu {
       @include media-breakpoint-down(sm) {
-        background-color: gray('800');
+        background-color: $blue;
         width: 100%;
         justify-content: flex-end;
 
