@@ -1,34 +1,21 @@
 <template>
   <main>
     <div class="login-container">
+      <div class="login-laside"></div>
       <div class="login-main">
         <div>
-          <div class="login-brand mb-5">
-            <img
-              class="logo"
-              width="200px"
-              src="@/assets/images/yugu-big-logo.svg"
-              :alt="altLogo"
-            />
-          </div>
-          <h1 v-if="customizableGuiName" class="h3 mb-5">
-            {{ customizableGuiName }}
-          </h1>
+          <img
+            class="ml-5"
+            width="250px"
+            src="@/assets/images/yugu-big-logo.svg"
+            :alt="altLogo"
+          />
+          <h1 class="head">域固威芯</h1>
+          <div class="login-brand mb-5"></div>
           <router-view class="login=form form-background" />
         </div>
       </div>
-      <div class="login-aside">
-        <div class="login-aside__logo-brand">
-          <!-- Add Secondary brand logo if needed -->
-        </div>
-        <div class="login-aside__logo-bmc">
-          <img
-            height="60px"
-            src="@/assets/images/built-on-openbmc-logo.svg"
-            alt="Built on OpenBMC"
-          />
-        </div>
-      </div>
+      <div class="login-raside"></div>
     </div>
   </main>
 </template>
@@ -36,12 +23,6 @@
 <script>
 export default {
   name: 'LoginLayout',
-  data() {
-    return {
-      altLogo: process.env.VUE_APP_COMPANY_NAME || 'OpenBMC',
-      customizableGuiName: process.env.VUE_APP_GUI_NAME || '',
-    };
-  },
 };
 </script>
 
@@ -50,8 +31,6 @@ export default {
   background: gray('100');
   display: flex;
   flex-direction: column;
-  gap: $spacer * 2;
-  max-width: 1400px;
   min-width: 320px;
   min-height: 100vh;
   justify-content: space-around;
@@ -62,52 +41,59 @@ export default {
   }
 }
 
+.head {
+  margin-top: 10px;
+  margin-left: 84px;
+}
+
 .login-main {
+  width: 400px;
   min-height: 50vh;
+  height: 200px;
   padding: $spacer * 3;
 
   @include media-breakpoint-up('md') {
     background: gray('100');
     display: flex;
     flex-direction: column;
-    flex: 1 1 75%;
     min-height: 100vh;
     justify-content: center;
     align-items: center;
   }
 }
 
-.login-form {
-  @include media-breakpoint-up('md') {
-    max-width: 360px;
-  }
-}
-
-.login-aside {
+.login-laside {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   gap: $spacer * 1.5;
-  margin-right: $spacer * 3;
   margin-bottom: $spacer;
-
+  background-image: url('../assets/images/square-point.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.1;
+  @include media-breakpoint-up('md') {
+    min-height: 100vh;
+    padding-bottom: $spacer;
+    flex: 1 1 75%;
+    margin-bottom: 0;
+  }
+}
+.login-raside {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: $spacer * 1.5;
+  margin-bottom: $spacer;
+  background-image: url('../assets/images/square-point.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.1;
   @include media-breakpoint-up('md') {
     min-height: 100vh;
     padding-bottom: $spacer;
     flex: 1 1 25%;
     margin-bottom: 0;
-  }
-}
-
-.login-aside__logo-brand:not(:empty) {
-  &::after {
-    content: '';
-    display: inline-block;
-    height: 2.5rem;
-    width: 2px;
-    background-color: gray('200');
-    margin-left: $spacer * 1.5;
-    vertical-align: middle;
   }
 }
 </style>
