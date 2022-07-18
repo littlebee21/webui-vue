@@ -166,14 +166,14 @@ svg {
   }
 
   &:active {
-    background-color: theme-color('secondary');
+    background-color: theme-color('primary');
     color: $white;
   }
 }
 
 .nav-link--current {
   font-weight: $headings-font-weight;
-  background-color: theme-color('secondary');
+  background-color: theme-color('primary');
   color: theme-color('light');
   cursor: default;
   box-shadow: none;
@@ -190,7 +190,7 @@ svg {
 
   &:hover,
   &:focus {
-    background-color: theme-color('secondary');
+    background-color: theme-color('primary');
     color: theme-color('light');
   }
 }
