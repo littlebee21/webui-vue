@@ -5,8 +5,9 @@
         <div>
           <div class="login-brand mb-5">
             <img
-              width="90px"
-              src="@/assets/images/login-company-logo.svg"
+              class="logo"
+              width="200px"
+              src="@/assets/images/yugu-big-logo.svg"
               :alt="altLogo"
             />
           </div>
