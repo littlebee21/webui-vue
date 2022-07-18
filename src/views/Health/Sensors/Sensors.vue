@@ -220,8 +220,7 @@ export default {
   created() {
     this.startLoader();
     this.$store.dispatch('sensors/oldGetFanSensor');
-    this.$store.dispatch('sensors/oldGetVDDSensor');
-    this.$store.dispatch('sensors/oldGetTestSensors').finally(() => {
+    this.$store.dispatch('sensors/oldGetEnumSensors').finally(() => {
       this.endLoader();
       this.isBusy = false;
     });

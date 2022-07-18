@@ -15,7 +15,7 @@ const SensorsStore = {
     },
   },
   actions: {
-    async oldGetTestSensors({ commit }) {
+    async oldGetEnumSensors({ commit }) {
       return await api
         .get('/xyz/openbmc_project/sensors/enumerate')
         .then(({ data: { data } }) => {
