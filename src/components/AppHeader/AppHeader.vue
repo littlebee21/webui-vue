@@ -37,6 +37,18 @@
         </b-navbar-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto helper-menu">
+          <b-nav-item data-test-id="appHeader-container-health">
+            <status-icon :status="healthStatusIcon" />
+            {{ $t('appHeader.language') }}
+            <b-dropdown variant="link" right>
+              <b-dropdown-item @click="changeChinese">
+                {{ $t('language.chinese') }}
+              </b-dropdown-item>
+              <b-dropdown-item @click="changeEnglish">{{
+                $t('language.english')
+              }}</b-dropdown-item>
+            </b-dropdown>
+          </b-nav-item>
           <b-nav-item
             to="/health/event-logs"
             data-test-id="appHeader-container-health"
@@ -102,6 +114,7 @@ import IconMenu from '@carbon/icons-vue/es/menu/20';
 import IconRenew from '@carbon/icons-vue/es/renew/20';
 import StatusIcon from '@/components/Global/StatusIcon';
 import LoadingBar from '@/components/Global/LoadingBar';
+import i18n from '@/i18n';
 
 export default {
   name: 'AppHeader',
@@ -197,6 +210,22 @@ export default {
     },
     toggleNavigation() {
       this.$root.$emit('toggle-navigation');
+    },
+    setFocus(event) {
+      event.preventDefault();
+      this.$root.$emit('skip-navigation');
+    },
+    changeChinese() {
+      i18n.locale = 'zh-cn';
+      localStorage.setItem('storedLanguage', i18n.locale);
+      this.$store.commit('global/setLanguagePreference', i18n.locale);
+      window.location.reload();
+    },
+    changeEnglish() {
+      i18n.locale = 'en-US';
+      localStorage.setItem('storedLanguage', i18n.locale);
+      this.$store.commit('global/setLanguagePreference', i18n.locale);
+      window.location.reload();
     },
   },
 };
