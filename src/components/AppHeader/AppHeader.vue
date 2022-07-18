@@ -260,7 +260,7 @@ export default {
     padding: 0.68rem 1rem !important;
 
     &:hover {
-      background-color: theme-color-level(light, 10);
+      background-color: theme-color-level(light, 5);
     }
     &:active {
       background-color: theme-color-level(light, 9);
