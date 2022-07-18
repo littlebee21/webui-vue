@@ -85,6 +85,7 @@
     }
   },
   "appHeader": {
+    "language": "Language",
     "applicationHeader": "Application header",
     "health": "Health",
     "logOut": "Log out",
