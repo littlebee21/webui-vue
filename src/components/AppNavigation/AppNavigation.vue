@@ -231,7 +231,7 @@ svg {
   left: 0;
   right: 0;
   z-index: $zindex-fixed + 1;
-  background-color: $black;
+  background-color: $blue-yu-logo;
   opacity: 0.5;
 
   &.fade-enter-active {
