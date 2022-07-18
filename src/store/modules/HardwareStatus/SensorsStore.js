@@ -1,6 +1,23 @@
 import api from '@/store/api';
-import { uniqBy } from 'lodash';
+// import { uniqBy } from 'lodash';
 
+function color(item) {
+  if (item.Value >= item.CriticalHigh) return 'danger';
+  else if (item.Value >= item.WarningHigh) return 'warning';
+  else if (item.Value >= item.WarningLow) return 'success';
+  else if (item.Value > item.CriticalLow) return 'warning';
+  else if (item.Value <= item.CriticalLow) return 'danger';
+  else return 'light';
+}
+
+function status(item) {
+  if (item.Value >= item.CriticalHigh) return 'Critical';
+  else if (item.Value >= item.WarningHigh) return 'Warning';
+  else if (item.Value >= item.WarningLow) return 'OK';
+  else if (item.Value > item.CriticalLow) return 'Warning';
+  else if (item.Value <= item.CriticalLow) return 'Critical';
+  else return 'OK';
+}
 const SensorsStore = {
   namespaced: true,
   state: {
@@ -11,10 +28,76 @@ const SensorsStore = {
   },
   mutations: {
     setSensors: (state, sensors) => {
-      state.sensors = uniqBy([...state.sensors, ...sensors], 'name');
+      state.sensors = sensors;
     },
   },
   actions: {
+    async oldGetEnumSensors({ commit }) {
+      return await api
+        .get('/xyz/openbmc_project/sensors/enumerate')
+        .then(({ data: { data } }) => {
+          const sensorData = [];
+          Object.keys(data).forEach((key) => {
+            if (key.includes('utilization') == true) {
+              return false;
+            }
+            sensorData.push({
+              name: key.split('/').pop(),
+              status: status(data[key]),
+              currentValue: data[key].Value,
+              upperCaution: data[key].WarningHigh,
+              lowerCaution: data[key].WarningLow,
+              upperCritical: data[key].CriticalHigh,
+              lowerCritical: data[key].CriticalLow,
+              _rowVariant: color(data[key]),
+            });
+          });
+          commit('setSensors', sensorData);
+        })
+        .catch((error) => console.log(error));
+    },
+    //old interface get fan
+    async oldGetFanSensor({ commit }) {
+      return await api
+        .get('xyz/openbmc_project/sensors/fan_tach/fan1')
+        .then(({ data: { data } }) => {
+          const sensorData = [];
+          Object.keys(data).forEach((key) => {
+            sensorData.push({
+              name: key,
+              status: data[key].Functional,
+              currentValue: data[key].Value,
+              upperCaution: data[key].WarningHigh,
+              lowerCaution: data[key].WarningLow,
+              upperCritical: data[key].CriticalHigh,
+              lowerCritical: data[key].CriticalLow,
+            });
+          });
+          commit('setSensors', sensorData);
+        })
+        .catch((error) => console.log(error));
+    },
+    //old interface get VDD
+    async oldGetVDDSensor({ commit }) {
+      return await api
+        .get('xyz/openbmc_project/sensors/voltage/VDD12V')
+        .then(({ data: { data } }) => {
+          const sensorData = [];
+          Object.keys(data).forEach((key) => {
+            sensorData.push({
+              name: key,
+              status: data[key].Functional,
+              currentValue: data[key].Value,
+              upperCaution: data[key].WarningHigh,
+              lowerCaution: data[key].WarningLow,
+              upperCritical: data[key].CriticalHigh,
+              lowerCritical: data[key].CriticalLow,
+            });
+          });
+          commit('setSensors', sensorData);
+        })
+        .catch((error) => console.log(error));
+    },
     async getAllSensors({ dispatch }) {
       const collection = await dispatch('getChassisCollection');
       if (!collection) return;

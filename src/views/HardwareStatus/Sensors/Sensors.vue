@@ -142,6 +142,7 @@ export default {
     SearchFilterMixin,
   ],
   beforeRouteLeave(to, from, next) {
+    clearInterval(this.timer);
     this.hideLoader();
     next();
   },
@@ -222,7 +223,10 @@ export default {
   },
   created() {
     this.startLoader();
-    this.$store.dispatch('sensors/getAllSensors').finally(() => {
+    this.timer = setInterval(() => {
+      this.$store.dispatch('sensors/oldGetEnumSensors');
+    }, 3000);
+    this.$store.dispatch('sensors/oldGetEnumSensors').finally(() => {
       this.endLoader();
       this.isBusy = false;
     });
