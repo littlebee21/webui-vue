@@ -3,6 +3,8 @@ $black: #000;
 $white: #fff;
 
 $blue-500: #2d60e5;
+$blue-yu-logo: #1d6da6;
+$blue-yu-dark-blue: #1b2834;
 $green-500: #0a7d06;
 $red-500: #da1416;
 $yellow-500: #efc100;
@@ -18,7 +20,8 @@ $gray-800: #3f3f3f;
 $gray-900: #161616;
 
 // Sass Base Color Variables
-$blue: $blue-500;
+$blue: $blue-yu-logo;
+$darkblue: $blue-yu-dark-blue;
 $green: $green-500;
 $red: $red-500;
 $yellow: $yellow-500;
@@ -34,5 +37,19 @@ $secondary: $gray-800;
 $success: $green;
 $warning: $yellow;
 
+// Sass Theme Color Variables
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "dark": $dark,
+  "light": $light,
+  "danger": $danger,
+  "info": $info,
+  "success": $success,
+  "warning": $warning,
+  "blue": $blue-yu-logo,
+);
+
 $loading-color: $primary;
-$navbar-color: $dark;
+$navbar-color: $primary;
