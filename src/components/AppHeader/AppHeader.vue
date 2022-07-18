@@ -29,7 +29,8 @@
           <b-navbar-brand to="/" data-test-id="appHeader-container-overview">
             <img
               class="header-logo"
-              src="@/assets/images/logo-header.svg"
+              src="@/assets/images/yugu-header-logo.jpg"
+              width="150"
               :alt="altLogo"
             />
           </b-navbar-brand>
