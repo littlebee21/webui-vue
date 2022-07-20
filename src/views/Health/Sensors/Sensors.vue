@@ -219,9 +219,11 @@ export default {
   },
   created() {
     this.startLoader();
-    this.$store
-      .dispatch('sensors/getAllSensors')
-      .finally(() => this.endLoader());
+    this.$store.dispatch('sensors/oldGetFanSensor');
+    this.$store.dispatch('sensors/oldGetEnumSensors').finally(() => {
+      this.endLoader();
+      this.isBusy = false;
+    });
   },
   methods: {
     sortCompare(a, b, key) {

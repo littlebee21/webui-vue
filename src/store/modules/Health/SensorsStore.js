@@ -15,6 +15,74 @@ const SensorsStore = {
     },
   },
   actions: {
+    async oldGetEnumSensors({ commit }) {
+      return await api
+        .get('/xyz/openbmc_project/sensors/enumerate')
+        .then(({ data: { data } }) => {
+          const sensorData = [];
+          Object.keys(data).forEach((key) => {
+            if (key.includes('utilization') == true) {
+              return false;
+            }
+            sensorData.push({
+              name: key.split('/').pop(),
+              status: data[key].Functional,
+              currentValue: data[key].Value,
+              upperCaution: data[key].WarningHigh,
+              lowerCaution: data[key].WarningLow,
+              upperCritical: data[key].CriticalHigh,
+              lowerCritical: data[key].CriticalLow,
+            });
+            console.log(data[key].Value);
+          });
+          commit('setSensors', sensorData);
+        })
+        .catch((error) => console.log(error));
+    },
+    //old interface get fan
+    async oldGetFanSensor({ commit }) {
+      return await api
+        .get('xyz/openbmc_project/sensors/fan_tach/fan1')
+        .then(({ data: { data } }) => {
+          const sensorData = [];
+          Object.keys(data).forEach((key) => {
+            sensorData.push({
+              name: key,
+              status: data[key].Functional,
+              currentValue: data[key].Value,
+              upperCaution: data[key].WarningHigh,
+              lowerCaution: data[key].WarningLow,
+              upperCritical: data[key].CriticalHigh,
+              lowerCritical: data[key].CriticalLow,
+            });
+            console.log(data[key].Value);
+          });
+          commit('setSensors', sensorData);
+        })
+        .catch((error) => console.log(error));
+    },
+    //old interface get VDD
+    async oldGetVDDSensor({ commit }) {
+      return await api
+        .get('xyz/openbmc_project/sensors/voltage/VDD12V')
+        .then(({ data: { data } }) => {
+          const sensorData = [];
+          Object.keys(data).forEach((key) => {
+            sensorData.push({
+              name: key,
+              status: data[key].Functional,
+              currentValue: data[key].Value,
+              upperCaution: data[key].WarningHigh,
+              lowerCaution: data[key].WarningLow,
+              upperCritical: data[key].CriticalHigh,
+              lowerCritical: data[key].CriticalLow,
+            });
+            console.log(data[key].Value);
+          });
+          commit('setSensors', sensorData);
+        })
+        .catch((error) => console.log(error));
+    },
     async getAllSensors({ dispatch }) {
       const collection = await dispatch('getChassisCollection');
       if (!collection) return;
