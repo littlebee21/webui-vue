@@ -225,7 +225,7 @@ export default {
     padding: 0.68rem 1rem !important;
 
     &:hover {
-      background-color: theme-color-level(light, 10);
+      background-color: theme-color-level(light, 5);
     }
     &:active {
       background-color: theme-color-level(light, 9);
@@ -249,7 +249,7 @@ export default {
 
     .helper-menu {
       @include media-breakpoint-down(sm) {
-        background-color: gray('800');
+        background-color: $blue;
         width: 100%;
         justify-content: flex-end;
 

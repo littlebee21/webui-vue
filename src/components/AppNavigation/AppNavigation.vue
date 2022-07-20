@@ -163,14 +163,14 @@ svg {
   }
 
   &:active {
-    background-color: theme-color('secondary');
+    background-color: theme-color('primary');
     color: $white;
   }
 }
 
 .nav-link--current {
   font-weight: $headings-font-weight;
-  background-color: theme-color('secondary');
+  background-color: theme-color('primary');
   color: theme-color('light');
   cursor: default;
   box-shadow: none;
@@ -187,7 +187,7 @@ svg {
 
   &:hover,
   &:focus {
-    background-color: theme-color('secondary');
+    background-color: theme-color('primary');
     color: theme-color('light');
   }
 }
@@ -228,7 +228,7 @@ svg {
   left: 0;
   right: 0;
   z-index: $zindex-fixed + 1;
-  background-color: $black;
+  background-color: $blue-yu-logo;
   opacity: 0.5;
 
   &.fade-enter-active {
