@@ -30,7 +30,7 @@
             <img
               class="header-logo"
               src="@/assets/images/yugu-header-logo.jpg"
-              width="150"
+              width="160"
               :alt="altLogo"
             />
           </b-navbar-brand>
