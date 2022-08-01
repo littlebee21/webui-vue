@@ -21,6 +21,7 @@ import FanStore from './modules/Health/FanStore';
 import ChassisStore from './modules/Health/ChassisStore';
 import BmcStore from './modules/Health/BmcStore';
 import ProcessorStore from './modules/Health/ProcessorStore';
+import FactoryResetStore from './modules/Control/FactoryResetStore';
 
 import WebSocketPlugin from './plugins/WebSocketPlugin';
 import DateTimeStore from './modules/Configuration/DateTimeSettingsStore';
@@ -54,6 +55,7 @@ export default new Vuex.Store({
     chassis: ChassisStore,
     bmc: BmcStore,
     processors: ProcessorStore,
+    factoryReset: FactoryResetStore,
     virtualMedia: VirtualMediaStore,
   },
   plugins: [WebSocketPlugin],

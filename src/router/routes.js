@@ -24,6 +24,8 @@ import ServerLed from '@/views/Control/ServerLed';
 import ServerPowerOperations from '@/views/Control/ServerPowerOperations';
 import SslCertificates from '@/views/AccessControl/SslCertificates';
 import VirtualMedia from '@/views/Control/VirtualMedia';
+import FactoryReset from '@/views/Control/FactoryReset';
+
 import i18n from '@/i18n';
 
 const routes = [
@@ -168,6 +170,14 @@ const routes = [
         component: Kvm,
         meta: {
           title: i18n.t('appPageTitle.kvm'),
+        },
+      },
+      {
+        path: '/control/factory-reset',
+        name: 'factory-reset',
+        component: FactoryReset,
+        meta: {
+          title: i18n.t('appPageTitle.factoryReset'),
         },
       },
       {
