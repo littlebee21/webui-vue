@@ -108,6 +108,11 @@
     "dumps": "@:appPageTitle.dumps",
     "eventLogs": "@:appPageTitle.eventLogs",
     "factoryReset": "@:appPageTitle.factoryReset",
+    "fan": "@:appPageTitle.fan",
+    "accessControl": "Access control",
+    "configuration": "Configuration",
+    "control": "Control",
+    "dateTimeSettings": "@:appPageTitle.dateTimeSettings",
     "firmware": "@:appPageTitle.firmware",
     "hardwareStatus": "Hardware status",
     "inventory": "@:appPageTitle.inventory",
@@ -131,13 +136,14 @@
     "keyClear": "@:appPageTitle.keyClear"
   },
   "appPageTitle": {
+    "factoryReset": "Factory reset",
+    "fan": "Fan Control",
     "changePassword": "Change password",
     "power": "Power",
     "sessions": "Sessions",
     "dateTime": "Date and time",
     "dumps": "Dumps",
     "eventLogs": "Event logs",
-    "factoryReset": "Factory reset",
     "firmware": "Firmware",
     "inventory": "Inventory and LEDs",
     "kvm": "KVM",
@@ -752,6 +758,28 @@
       "errorRebootStart": "Error rebooting BMC.",
       "successRebootStart": "Rebooting BMC."
     }
+  },
+  "pageFan": {
+    "fanSpeedWantDes": "Enter speed you want 0-100",
+    "informations":{
+      "userManual":"User Manual",
+      "AutoControlInformation": "Automatic control mode: manual control and automatic control are mutually exclusive. The default is automatic control mode. In case of abnormality, the fan runs at full speed. During startup and restart, the fan runs at full speed to prevent the hardware temperature from being too high after the server is down",
+      "ManualControlInformaiton": "Manual control mode: the fan speed is controlled by percentage, 0 is the lowest speed, and 100 is the highest speed"
+    },
+    "controllers":{
+      "yes": "Yes",
+      "No":"No",
+      "confirmPattern":"Confirm"
+    },
+    "policies":{
+      "policiesTitle":"Fan policies",
+      "CurrentPatten":"Current Pattern :",
+      "fantitle": "Fan Controller",
+      "FanSpeed": "fan speed :",
+      "message": "message"
+    },
+      "AutoControlTitle": "AutoControl",
+      "ManualControlTitle": "ManualControl"
   },
   "pagePolicies": {
     "ipmi": "Network IPMI (out-of-band IPMI)",

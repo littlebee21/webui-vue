@@ -30,6 +30,7 @@ import Certificates from '@/views/SecurityAndAccess/Certificates';
 import VirtualMedia from '@/views/Operations/VirtualMedia';
 import Power from '@/views/ResourceManagement/Power';
 import i18n from '@/i18n';
+import Fan from '@/views/Operations/Fan';
 
 const routes = [
   {
@@ -245,6 +246,14 @@ const routes = [
         component: RebootBmc,
         meta: {
           title: i18n.t('appPageTitle.rebootBmc'),
+        },
+      },
+      {
+        path: '/operations/fan',
+        name: 'fan',
+        component: Fan,
+        meta: {
+          title: i18n.t('appPageTitle.fan'),
         },
       },
       {

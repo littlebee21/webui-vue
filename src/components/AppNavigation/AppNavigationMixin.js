@@ -92,6 +92,11 @@ const AppNavigationMixin = {
               route: '/operations/reboot-bmc',
             },
             {
+              id: 'fan',
+              label: this.$t('appNavigation.fan'),
+              route: '/operations/fan',
+            },
+            {
               id: 'serial-over-lan',
               label: this.$t('appNavigation.serialOverLan'),
               route: '/operations/serial-over-lan',
