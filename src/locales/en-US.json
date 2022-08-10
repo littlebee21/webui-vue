@@ -97,6 +97,7 @@
   },
   "appNavigation": {
     "factoryReset": "@:appPageTitle.factoryReset",
+    "fan": "@:appPageTitle.fan",
     "accessControl": "Access control",
     "configuration": "Configuration",
     "control": "Control",
@@ -123,6 +124,7 @@
   },
   "appPageTitle": {
     "factoryReset": "Factory reset",
+    "fan": "Fan Control",
     "changePassword": "Change password",
     "dateTimeSettings": "Date and time settings",
     "eventLogs": "Event logs",
@@ -586,6 +588,26 @@
       "errorRebootStart": "Error rebooting BMC.",
       "successRebootStart": "Rebooting BMC."
     }
+  },
+  "pageFan": {
+    "informations":{
+      "userManual":"User Manual",
+      "AutoControlInformation": "   The automatic control is only set after the server is turned on, after the server is turned off or the sensor fails to detect. fan full speed run, When the fan is unplugged or fails in the automatic control mode, the other fans run at full speed ",
+      "ManualControlInformaiton": "fan speed control Use percentage control, but return value use 0-255 pwm, 0 is full speed"
+    },
+    "controllers":{
+      "yes": "Yes",
+      "No":"No",
+      "confirmPattern":"Confirm"
+    },
+    "policies":{
+      "policiesTitle":"Fan policies",
+      "CurrentPatten":"Current Pattern :",
+        "fantitle": "Fan Controller",
+        "FanSpeed": "fan speed :"
+    },
+      "AutoControlTitle": "AutoControl",
+      "ManualControlTitle": "ManualControl"
   },
   "pageSensors": {
     "exportFilePrefix": "sensors_",

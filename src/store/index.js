@@ -26,6 +26,7 @@ import FactoryResetStore from './modules/Control/FactoryResetStore';
 import WebSocketPlugin from './plugins/WebSocketPlugin';
 import DateTimeStore from './modules/Configuration/DateTimeSettingsStore';
 import VirtualMediaStore from './modules/Control/VirtualMediaStore';
+import FanControlStore from './modules/Control/FanControlStore';
 
 Vue.use(Vuex);
 
@@ -57,6 +58,7 @@ export default new Vuex.Store({
     processors: ProcessorStore,
     factoryReset: FactoryResetStore,
     virtualMedia: VirtualMediaStore,
+    fanControl: FanControlStore,
   },
   plugins: [WebSocketPlugin],
 });

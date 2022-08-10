@@ -27,6 +27,7 @@ import VirtualMedia from '@/views/Control/VirtualMedia';
 import FactoryReset from '@/views/Control/FactoryReset';
 
 import i18n from '@/i18n';
+import Fan from '@/views/Control/Fan';
 
 const routes = [
   {
@@ -202,6 +203,14 @@ const routes = [
         component: RebootBmc,
         meta: {
           title: i18n.t('appPageTitle.rebootBmc'),
+        },
+      },
+      {
+        path: '/control/fan',
+        name: 'fan',
+        component: Fan,
+        meta: {
+          title: i18n.t('appPageTitle.fan'),
         },
       },
       {
