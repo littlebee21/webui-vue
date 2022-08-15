@@ -33,11 +33,7 @@
     </page-section>
     <page-section :section-title="$t('pageDateTimeSettings.configureSettings')">
       <b-form novalidate @submit.prevent="submitForm">
-        <b-form-group
-          label="Configure date and time"
-          :disabled="loading"
-          label-sr-only
-        >
+        <b-form-group label="Configure date and time" label-sr-only>
           <b-form-radio
             v-model="form.configurationSelected"
             value="manual"

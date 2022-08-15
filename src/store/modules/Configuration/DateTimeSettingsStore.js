@@ -30,7 +30,7 @@ const DateTimeStore = {
           console.log(error);
         });
     },
-    async updateDateTimeSettings({ state }, dateTimeForm) {
+    async updateDateTimeSettings(context, dateTimeForm) {
       const ntpData = {
         NTP: {
           ProtocolEnabled: dateTimeForm.ntpProtocolEnabled,
@@ -56,7 +56,8 @@ const DateTimeStore = {
              * TODO: remove timeout if backend solves
              * https://github.com/openbmc/openbmc/issues/3459
              */
-            const timeoutVal = state.isNtpProtocolEnabled ? 20000 : 0;
+            // const timeoutVal = state.isNtpProtocolEnabled ? 10000 : 0;
+            const timeoutVal = 0;
             return await new Promise((resolve, reject) => {
               setTimeout(() => {
                 return api
