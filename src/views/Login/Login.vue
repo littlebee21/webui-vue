@@ -93,7 +93,7 @@ export default {
         },
         {
           value: 'zh-cn',
-          text: 'chinese',
+          text: '中文',
         },
       ],
     };
