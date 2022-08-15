@@ -8,17 +8,21 @@ const BootSettingsStore = {
     bootSource: null,
     overrideEnabled: null,
     tpmEnabled: null,
+    PowerOnStrategy: '',
   },
   getters: {
     bootSourceOptions: (state) => state.bootSourceOptions,
     bootSource: (state) => state.bootSource,
     overrideEnabled: (state) => state.overrideEnabled,
     tpmEnabled: (state) => state.tpmEnabled,
+    PowerOnStrategy: (state) => state.PowerOnStrategy,
   },
   mutations: {
     setBootSourceOptions: (state, bootSourceOptions) =>
       (state.bootSourceOptions = bootSourceOptions),
     setBootSource: (state, bootSource) => (state.bootSource = bootSource),
+    setPowerOnStrategy: (state, PowerOnStrategy) =>
+      (state.PowerOnStrategy = PowerOnStrategy),
     setOverrideEnabled: (state, overrideEnabled) => {
       if (overrideEnabled === 'Once') {
         state.overrideEnabled = true;
@@ -30,6 +34,31 @@ const BootSettingsStore = {
     setTpmPolicy: (state, tpmEnabled) => (state.tpmEnabled = tpmEnabled),
   },
   actions: {
+    async PowerOnStrategyGet({ commit }) {
+      return await api
+        .get('/redfish/v1/Systems/system/AutoRunState/')
+        .then((response) => {
+          if (response.data.data == 'disable') {
+            commit('setPowerOnStrategy', 'no');
+          } else {
+            commit('setPowerOnStrategy', 'auto');
+          }
+        })
+        .catch((error) => console.log(error));
+    },
+    async PowerOnStrategySave(context, PowerOnStrategy) {
+      var able = '';
+      if (PowerOnStrategy == 'auto') {
+        able = 'enable';
+      } else {
+        able = 'disable';
+      }
+      return await api
+        .post('/redfish/v1/Systems/system/AutoRunState/', { data: able })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     async getBootSettings({ commit }) {
       return await api
         .get('/redfish/v1/Systems/system/')

@@ -133,6 +133,41 @@
         </page-section>
       </b-col>
     </b-row>
+    <b-row>
+      <b-col>
+        <page-section section-title="Power Strategy">
+          <b-col sm="8" md="6" xl="4">
+            <b-form-group>
+              <dl>
+                <dt>current status: {{ CurrentPowerOnStrategy }}</dt>
+              </dl>
+              <b-form-radio
+                v-model="choosePowerOnStrategy"
+                name="Power on Operation"
+                value="auto"
+              >
+                auto run when power on
+              </b-form-radio>
+              <b-form-radio
+                v-model="choosePowerOnStrategy"
+                name="Power on Operation"
+                value="no"
+              >
+                Not run Server when power on
+              </b-form-radio>
+            </b-form-group>
+            <b-button
+              variant="primary"
+              type="submit"
+              data-test-id="serverPowerOperations-button-reboot"
+              @click="PowerOnStrategySave"
+            >
+              save
+            </b-button>
+          </b-col>
+        </page-section>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
@@ -154,6 +189,7 @@ export default {
   },
   data() {
     return {
+      choosePowerOnStrategy: '',
       form: {
         rebootOption: 'orderly',
         shutdownOption: 'orderly',
@@ -161,6 +197,9 @@ export default {
     };
   },
   computed: {
+    CurrentPowerOnStrategy() {
+      return this.$store.getters['hostBootSettings/PowerOnStrategy'];
+    },
     hostStatus() {
       return this.$store.getters['global/hostStatus'];
     },
@@ -176,6 +215,7 @@ export default {
   },
   created() {
     this.startLoader();
+    this.PowerOnStrategyGet();
     const bootSettingsPromise = new Promise((resolve) => {
       this.$root.$on('server-power-operations-boot-settings-complete', () =>
         resolve()
@@ -187,6 +227,16 @@ export default {
     ]).finally(() => this.endLoader());
   },
   methods: {
+    PowerOnStrategySave() {
+      this.$store.dispatch(
+        'hostBootSettings/PowerOnStrategySave',
+        this.choosePowerOnStrategy
+      );
+      this.PowerOnStrategyGet();
+    },
+    PowerOnStrategyGet() {
+      this.$store.dispatch('hostBootSettings/PowerOnStrategyGet');
+    },
     powerOn() {
       this.$store.dispatch('controls/hostPowerOn');
     },
