@@ -17,7 +17,9 @@
       "reset": "Reset",
       "save": "Save",
       "saveSettings": "Save settings",
-      "selected": "Selected"
+      "selected": "Selected",
+      "exportAll": "Export all",
+      "deleteAll": "Delete all"
     },
     "ariaLabel": {
       "clearSearch": "Clear search input",
@@ -235,7 +237,8 @@
     "toast": {
       "errorDelete": "Error deleting %{count} log. | Error deleting %{count} logs.",
       "successDelete": "Successfully deleted %{count} log. | Successfully deleted %{count} logs."
-    }
+    },
+    "getLogButtonName": "getlog"
   },
   "pageFirmware": {
     "backup": "Backup:",

@@ -1,29 +1,77 @@
 <template>
   <b-container fluid="xl">
     <page-title />
-    <b-row class="align-items-start">
-      <b-col sm="8" xl="6" class="d-sm-flex align-items-end">
-        <search
-          :placeholder="$t('pageEventLogs.table.searchLogs')"
-          @change-search="onChangeSearchInput"
-          @clear-search="onClearSearchInput"
-        />
-        <div class="ml-sm-4">
-          <table-cell-count
-            :filtered-items-count="filteredRows"
-            :total-number-of-cells="allLogs.length"
-          ></table-cell-count>
-        </div>
-      </b-col>
-      <b-col sm="8" md="7" xl="6">
-        <table-date-filter @change="onChangeDateTimeFilter" />
-      </b-col>
-    </b-row>
     <b-row>
-      <b-col class="text-right">
-        <table-filter :filters="tableFilters" @filter-change="onFilterChange" />
+      <b-col>
+        <b-button-group>
+          <b-button
+            class="ml-4 mr-1"
+            variant="outline-primary"
+            @click="fillKeywords('system')"
+          >
+            system log
+          </b-button>
+          <b-button
+            class="mr-1"
+            variant="outline-primary"
+            @click="fillKeywords('audit')"
+          >
+            audit log</b-button
+          >
+          <b-button class="mr-1" variant="outline-primary" @click="stopFlash">
+            stop refresh</b-button
+          >
+          <b-button class="mr-1" variant="outline-primary" @click="beginFlash">
+            begin refresh</b-button
+          >
+        </b-button-group>
       </b-col>
     </b-row>
+    <div class="filter-card">
+      <b-row class="align-items-start">
+        <b-col sm="6" xl="6" class="align-items-end mt-2">
+          <b-form-tags
+            v-model="inputSearchFilter"
+            input-id="tags-basic"
+            placeholder="filter keyword"
+            remove-on-delete
+          ></b-form-tags>
+        </b-col>
+        <b-col sm="4" xl="4" class="mt-1">
+          <b-button-group>
+            <b-button
+              class="mr-1"
+              variant="outline-primary"
+              @click="getLogWithContent"
+            >
+              {{ $t('pageEventLogs.getLogButtonName') }}</b-button
+            >
+          </b-button-group>
+        </b-col>
+      </b-row>
+      <b-row class="mb-2 mt-2">
+        <b-col sm="5" md="5" xl="5">
+          <table-date-filter @change="onChangeDateTimeFilter" />
+        </b-col>
+        <b-col sm="7" md="7" xl="7">
+          <table-filter
+            class="mt-4"
+            :filters="tableFilters"
+            @filter-change="onFilterChange"
+          />
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col sm="2" xl="2">
+          <div class="ml-sm-1">
+            <table-cell-count
+              :filtered-items-count="filteredRows"
+              :total-number-of-cells="allLogs.length"
+            ></table-cell-count>
+          </div>
+        </b-col>
+      </b-row>
+    </div>
     <b-row>
       <b-col>
         <table-toolbar
@@ -139,7 +187,7 @@
           first-number
           last-number
           :per-page="perPage"
-          :total-rows="getTotalRowCount(filteredLogs.length)"
+          :total-rows="getTotalRowCount(filteredRows)"
           aria-controls="table-event-logs"
         />
       </b-col>
@@ -154,7 +202,6 @@ import { omit } from 'lodash';
 
 import PageTitle from '@/components/Global/PageTitle';
 import StatusIcon from '@/components/Global/StatusIcon';
-import Search from '@/components/Global/Search';
 import TableCellCount from '@/components/Global/TableCellCount';
 import TableDateFilter from '@/components/Global/TableDateFilter';
 import TableFilter from '@/components/Global/TableFilter';
@@ -186,7 +233,6 @@ export default {
     IconExport,
     IconTrashcan,
     PageTitle,
-    Search,
     StatusIcon,
     TableCellCount,
     TableFilter,
@@ -208,11 +254,14 @@ export default {
   beforeRouteLeave(to, from, next) {
     // Hide loader if the user navigates to another page
     // before request is fulfilled.
+    clearInterval(this.timer);
     this.hideLoader();
     next();
   },
   data() {
     return {
+      isBusy: true,
+      inputSearchFilter: [],
       fields: [
         {
           key: 'checkbox',
@@ -313,16 +362,77 @@ export default {
       return this.getFilteredTableData(
         this.filteredLogsByDate,
         this.activeFilters
-      );
+      ).filter((row) => {
+        let returnRow = false;
+        const rowProperty = row['description'].toLowerCase();
+        if (this.inputSearchFilter.length == 0) {
+          return true;
+        }
+        // have and filter
+        var index = null;
+        for (index in this.inputSearchFilter) {
+          // string head is subtraction, filter them
+          if (this.inputSearchFilter[index].substr(0, 1) == '-') {
+            if (
+              rowProperty.includes(
+                this.inputSearchFilter[index].toLowerCase().substr(1)
+              ) == true
+            ) {
+              returnRow = false;
+              break;
+            } else {
+              returnRow = true;
+              continue;
+            }
+          }
+          // string dont have input word
+          if (
+            rowProperty.includes(this.inputSearchFilter[index].toLowerCase()) ==
+            false
+          ) {
+            returnRow = false;
+            break;
+          } else {
+            returnRow = true;
+          }
+        }
+        return returnRow;
+      });
     },
   },
   created() {
     this.startLoader();
-    this.$store
-      .dispatch('eventLog/getEventLogData')
-      .finally(() => this.endLoader());
+    this.fillKeywords('audit');
+    this.timer = setInterval(() => {
+      this.getLogWithContent();
+    }, 30000);
   },
   methods: {
+    stopFlash() {
+      console.log('top flash');
+      clearInterval(this.timer);
+    },
+    beginFlash() {
+      this.timer = setInterval(() => {
+        this.getLogWithContent();
+      }, 5000);
+    },
+    fillKeywords(item) {
+      this.inputSearchFilter = item;
+      setTimeout(() => {
+        this.getLogWithContent();
+      }, 2000);
+    },
+    getLogWithContent() {
+      if (this.inputSearchFilter.length == 0) {
+        console.log('input text is null');
+      }
+      this.$store.commit('eventLog/setAllEvents', []);
+      this.$store.dispatch(
+        'eventLog/getAndAppendMyEventLogData',
+        this.inputSearchFilter[0]
+      );
+    },
     deleteLogs(uris) {
       this.$store
         .dispatch('eventLog/deleteEventLogs', uris)
@@ -409,3 +519,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.filter-card {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+</style>
