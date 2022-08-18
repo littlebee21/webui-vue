@@ -7,20 +7,20 @@
       "confirm": "Confirm",
       "copy": "Copy",
       "delete": "Delete",
-      "deleteAll": "Delete all",
       "disable": "Disable",
       "download": "Download",
       "edit": "Edit",
       "enable": "Enable",
       "export": "Export",
-      "exportAll": "Export all",
       "filter": "Filter",
       "refresh": "Refresh",
       "replace": "Replace",
       "reset": "Reset",
       "save": "Save",
       "saveSettings": "Save settings",
-      "selected": "Selected"
+      "selected": "Selected",
+      "exportAll": "Export all",
+      "deleteAll": "Delete all"
     },
     "ariaLabel": {
       "clearSearch": "Clear search input",
@@ -323,6 +323,35 @@
       "resetToDefaultsSuccess": "Factory reset of BMC and server settings successful.",
       "resetToDefaultsError": "Factory reset of BMC and server settings failed."
     }
+  },
+  "pageEventLogs": {
+    "exportFilePrefix": "event_logs_",
+    "beginRefresh": "begin refresh",
+    "resolve": "Resolve",
+    "resolved": "Resolved",
+    "unresolve": "Unresolve",
+    "unresolved": "Unresolved",
+    "stopRefresh": "stop refresh",
+    "auditLog": "audit log",
+    "sysLog": "system log",
+    "modal": {
+      "deleteTitle": "Delete log | Delete logs",
+      "deleteMessage": "Are you sure you want to delete %{count} log? This action cannot be undone. | Are you sure you want to delete %{count} logs? This action cannot be undone."
+    },
+    "table": {
+      "date": "Date",
+      "description": "Description",
+      "id": "ID",
+      "searchLogs": "Search logs",
+      "severity": "Severity",
+      "type": "Type",
+      "times": "times"
+    },
+    "toast": {
+      "errorDelete": "Error deleting %{count} log. | Error deleting %{count} logs.",
+      "successDelete": "Successfully deleted %{count} log. | Successfully deleted %{count} logs."
+    },
+    "getLogButtonName": "getlog"
   },
   "pageFirmware": {
     "cardActionSwitchToRunning": "Switch to running",

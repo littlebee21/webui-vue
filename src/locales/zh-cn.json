@@ -220,6 +220,14 @@
   },
   "pageEventLogs": {
     "exportFilePrefix": "event_logs_",
+    "beginRefresh":"开始刷新",
+    "stopRefresh":"停止刷新",
+    "resolve": "解决的",
+    "resolved": "解决的",
+    "unresolve": "未解决",
+    "unresolved": "未解决",
+    "auditLog":"审核日志",
+    "sysLog":"系统日志",
     "modal": {
       "deleteTitle": "删除日志| 删除日志",
       "deleteMessage": "您确定要删除%{count}日志吗？ 此操作无法撤消。 | 您确定要删除%{count}日志吗？ 此操作无法撤消。"
@@ -235,7 +243,8 @@
     "toast": {
       "errorDelete": "错误删除%{count} log。 | 错误删除%{count}日志。",
       "successDelete": "成功删除了%{count} log。 | 成功删除了%{count}日志。"
-    }
+    },
+    "getLogButtonName": "获取日志"
   },
   "pageFirmware": {
     "backup": "备份:",
