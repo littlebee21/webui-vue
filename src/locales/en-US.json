@@ -16,6 +16,9 @@
       "replace": "Replace",
       "reset": "Reset",
       "save": "Save",
+      "exportAll": "Export all",
+      "deleteAll": "Delete all",
+      "refresh": "Refresh",
       "saveSettings": "Save settings",
       "selected": "Selected",
       "exportAll": "Export all",
@@ -122,6 +125,7 @@
     "serverPowerOperations": "@:appPageTitle.serverPowerOperations",
     "snmpSettings": "@:appPageTitle.snmpSettings",
     "sslCertificates": "@:appPageTitle.sslCertificates",
+    "IPManagement": "@:appPageTitle.IPManagement",
     "virtualMedia": "@:appPageTitle.virtualMedia"
   },
   "appPageTitle": {
@@ -147,6 +151,7 @@
     "serverLed": "Server LED",
     "serverPowerOperations": "Server power operations",
     "snmpSettings": "SNMP settings",
+    "IPManagement": "Black list",
     "sslCertificates": "SSL certificates",
     "virtualMedia": "Virtual media"
   },
@@ -477,6 +482,64 @@
       "successDeleteUser": "Deleted user '%{username}'.",
       "successSaveSettings": "Successfully saved account settings.",
       "successUpdateUser": "Updated user '%{username}'."
+    }
+  },
+  "pageIPManagement": {
+    "accountPolicySettings": "Account policy settings",
+    "addIP": "Add ip",
+    "deleteIP": "Delete ip | Delete ips",
+    "editIP": "Edit ip",
+    "viewPrivilegeRoleDescriptions": "View privilege role descriptions",
+    "modal": {
+      "accountLocked": "Account locked",
+      "accountStatus": "Account status",
+      "automaticAfterTimeout": "Automatic after timeout",
+      "batchDeleteConfirmMessage": "Are you sure you want to delete %{count} ip? This action cannot be undone. | Are you sure you want to delete %{count} ips? This action cannot be undone.",
+      "cannotStartWithANumber": "Cannot start with a number",
+      "clickSaveToUnlockAccount": "Click \"Save\" to unlock account",
+      "confirmIPPassword": "Confirm ip password",
+      "deleteConfirmMessage": "Are you sure you want to delete ip '%{ip}'? This action cannot be undone.",
+      "manual": "Manual",
+      "maxFailedLoginAttempts": "Max failed login attempts",
+      "noSpecialCharactersExceptUnderscore": "No special characters except underscore",
+      "passwordMustBeBetween": "Password must be between %{min} – %{max} characters",
+      "passwordsDoNotMatch": "Passwords do not match",
+      "privilege": "Privilege",
+      "timeoutDurationSeconds": "Timeout duration (seconds)",
+      "unlock": "Unlock",
+      "ipname": "IPname",
+      "ipPassword": "IP password",
+      "ipUnlockMethod": "IP unlock method"
+    },
+    "table": {
+      "privilege": "Privilege",
+      "status": "Status",
+      "ipname": "IPname"
+    },
+    "tableRoles": {
+      "configureComponentsManagedByThisService": "Configure components managed by this service",
+      "configureManagerResources": "Configure manager resources",
+      "configureIPsAndTheirAccounts": "Configure ips and their accounts",
+      "logInToTheServiceAndReadResources": "Log in to the service and read resources",
+      "updatePasswordForCurrentIPAccount": "Update password for current ip account"
+    },
+    "toast": {
+      "errorBatchDelete": "Error deleting %{count} ip. | Error deleting %{count} ips.",
+      "errorBatchDisable": "Error disabling %{count} ip. | Error disabling %{count} ips.",
+      "errorBatchEnable": "Error enabling %{count} ip. | Error enabling %{count} ips.",
+      "errorCreateIP": "Error creating ip '%{ipname}'.",
+      "errorDeleteIP": "Error deleting ip '%{ipname}'.",
+      "errorLoadAccountSettings": "Error loading account settings",
+      "errorLoadIPs": "Error loading ips.",
+      "errorSaveSettings": "Error saving account settings.",
+      "errorUpdateIP": "Error updating ip '%{ipname}'.",
+      "successBatchDelete": "Successfully deleted %{count} ip. | Successfully deleted %{count} ips.",
+      "successBatchDisable": "Successfully disabled %{count} ip. | Successfully disabled %{count} ips.",
+      "successBatchEnable": "Successfully enabled %{count} ip. | Successfully enabled %{count} ips.",
+      "successCreateIP": "Created ip '%{ipname}'.",
+      "successDeleteIP": "Deleted ip '%{ipname}'.",
+      "successSaveSettings": "Successfully saved account settings.",
+      "successUpdateIP": "Updated ip '%{ipname}'."
     }
   },
   "pageLogin": {

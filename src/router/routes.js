@@ -25,6 +25,7 @@ import ServerPowerOperations from '@/views/Control/ServerPowerOperations';
 import SslCertificates from '@/views/AccessControl/SslCertificates';
 import VirtualMedia from '@/views/Control/VirtualMedia';
 import FactoryReset from '@/views/Control/FactoryReset';
+import IPManagement from '@/views/AccessControl/IPManagement';
 
 import i18n from '@/i18n';
 import Fan from '@/views/Control/Fan';
@@ -139,6 +140,14 @@ const routes = [
         component: LocalUserManagement,
         meta: {
           title: i18n.t('appPageTitle.localUserManagement'),
+        },
+      },
+      {
+        path: '/access-control/IPManagement',
+        name: 'IPManagement',
+        component: IPManagement,
+        meta: {
+          title: i18n.t('appPageTitle.IPManagement'),
         },
       },
       {

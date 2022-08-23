@@ -140,6 +140,11 @@ const AppNavigationMixin = {
               route: '/access-control/local-user-management',
             },
             {
+              id: 'IPManagement',
+              label: this.$t('appNavigation.IPManagement'),
+              route: '/access-control/IPManagement',
+            },
+            {
               id: 'ssl-certificates',
               label: this.$t('appNavigation.sslCertificates'),
               route: '/access-control/ssl-certificates',
