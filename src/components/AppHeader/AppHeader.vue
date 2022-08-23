@@ -234,7 +234,7 @@ export default {
       this.$store.dispatch('eventLog/getEventLogData');
     },
     refresh() {
-      this.$emit('refresh');
+      window.location.reload();
     },
     logout() {
       this.$store.dispatch('authentication/logout');
