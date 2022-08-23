@@ -23,6 +23,16 @@ const NetworkSettingsStore = {
       (state.interfaceOptions = interfaceOptions),
   },
   actions: {
+    //dhcp interface 2022-0805-17  set dhcp model
+    postDHCPSetting() {
+      return api
+        .post(`/redfish/v1/Managers/bmc/EthernetInterfaces/custom/dhcp/`, {
+          data: 'enable',
+        })
+        .catch((error) => console.log(error))
+        .finally();
+    },
+
     async getEthernetData({ commit }) {
       return await api
         .get('/redfish/v1/Managers/bmc/EthernetInterfaces')
@@ -84,11 +94,8 @@ const NetworkSettingsStore = {
         MACAddress: networkSettingsForm.macAddress,
       };
 
-      // If DHCP disabled, update static DNS or static ipv4
-      if (!networkSettingsForm.isDhcpEnabled) {
-        data.IPv4StaticAddresses = [...addressArray, ...updatedAddresses];
-        data.StaticNameServers = networkSettingsForm.staticNameServers;
-      }
+      data.IPv4StaticAddresses = [...addressArray, ...updatedAddresses];
+      data.StaticNameServers = networkSettingsForm.staticNameServers;
 
       return await api
         .patch(

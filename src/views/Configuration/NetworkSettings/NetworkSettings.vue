@@ -11,7 +11,6 @@
             <b-form-select
               id="interface-select"
               v-model="selectedInterfaceIndex"
-              :disabled="loading"
               data-test-id="networkSettings-select-interface"
               :options="interfaceSelectOptions"
               @change="selectInterface"
@@ -22,7 +21,7 @@
       </b-row>
     </page-section>
     <b-form novalidate @submit.prevent="submitForm">
-      <b-form-group :disabled="loading">
+      <b-form-group>
         <page-section :section-title="$t('pageNetworkSettings.system')">
           <b-row>
             <b-col lg="3">
@@ -99,7 +98,24 @@
             </b-col>
           </b-row>
         </page-section>
-        <page-section :section-title="$t('pageNetworkSettings.staticIpv4')">
+        <b-form-group label="IP Model">
+          <b-form-radio
+            v-model="selected"
+            name="change-face-radios"
+            value="DHCP"
+            >DHCP</b-form-radio
+          >
+          <b-form-radio
+            v-model="selected"
+            name="change-face-radios"
+            value="Static"
+            >Static</b-form-radio
+          >
+        </b-form-group>
+        <page-section
+          v-show="selected === 'Static'"
+          :section-title="$t('pageNetworkSettings.staticIpv4')"
+        >
           <b-row>
             <b-col lg="9" class="mb-3">
               <b-table
@@ -213,7 +229,10 @@
             </b-col>
           </b-row>
         </page-section>
-        <page-section :section-title="$t('pageNetworkSettings.staticDns')">
+        <page-section
+          v-show="selected === 'Static'"
+          :section-title="$t('pageNetworkSettings.staticDns')"
+        >
           <b-row>
             <b-col lg="4" class="mb-3">
               <b-table
@@ -336,6 +355,7 @@ export default {
   },
   data() {
     return {
+      selected: '',
       dhcpEnabled: null,
       ipv4Configuration: '',
       ipv4StaticTableFields: [
@@ -508,6 +528,14 @@ export default {
       this.deleteIpv4StaticTableRow(row);
     },
     submitForm() {
+      //2022-0805-18 add DHCP control
+      if (this.selected == 'DHCP') {
+        this.$store.dispatch(
+          'networkSettings/postDHCPSetting',
+          networkSettingsForm
+        );
+        return;
+      }
       this.$v.$touch();
       if (this.$v.$invalid) return;
       this.startLoader();
