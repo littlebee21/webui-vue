@@ -444,6 +444,9 @@
     "viewPrivilegeRoleDescriptions":"查看特权角色描述",
     "number": "序号",
     "delete": "删除",
+    "usernamePattern":"通过，看起来像用户名",
+    "addressPattern":"通过，看起来像地址",
+    "example":"不正确输入,正确示例,例如:192.168.0.1/wang",
     "modal":{
       "accountLocked": "帐户被锁定",
       "accountStatus": "帐户状态",

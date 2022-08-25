@@ -19,13 +19,13 @@
               />
               <b-form-valid-feedback>
                 <template v-if="usernamePattern">
-                  ok looks like username
+                  {{ $t('pageIPManagement.usernamePattern') }}
                 </template>
                 <template v-else-if="addressPattern">
-                  ok looks like address
+                  {{ $t('pageIPManagement.addressPattern') }}
                 </template>
                 <template v-else-if="!usernamePattern">
-                  bad input, good example like : 192.168.0.1/wang
+                  {{ $t('pageIPManagement.example') }}
                 </template>
               </b-form-valid-feedback>
             </b-form-group>
