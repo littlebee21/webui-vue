@@ -9,20 +9,20 @@
             variant="outline-primary"
             @click="fillKeywords('system')"
           >
-            system log
+            {{ $t('pageEventLogs.sysLog') }}
           </b-button>
           <b-button
             class="mr-1"
             variant="outline-primary"
             @click="fillKeywords('audit')"
           >
-            audit log</b-button
+            {{ $t('pageEventLogs.auditLog') }}</b-button
           >
           <b-button class="mr-1" variant="outline-primary" @click="stopFlash">
-            stop refresh</b-button
+            {{ $t('pageEventLogs.stopRefresh') }}</b-button
           >
           <b-button class="mr-1" variant="outline-primary" @click="beginFlash">
-            begin refresh</b-button
+            {{ $t('pageEventLogs.beginRefresh') }}</b-button
           >
         </b-button-group>
       </b-col>
