@@ -11,6 +11,7 @@
       "download": "下载",
       "edit": "编辑",
       "enable": "开启",
+      "reset": "重置",
       "export": "导出",
       "filter": "筛选",
       "replace": "代替",
@@ -96,6 +97,7 @@
   },
   "appNavigation": {
     "accessControl": "访问控制",
+    "factoryReset": "@:appPageTitle.factoryReset",
     "configuration": "配置",
     "control": "控制",
     "dateTimeSettings": "@:appPageTitle.dateTimeSettings",
@@ -121,6 +123,7 @@
     "virtualMedia": "@:appPageTitle.virtualMedia"
   },
   "appPageTitle": {
+    "factoryReset": "恢复出厂设置",
     "changePassword": "更改密码",
     "dateTimeSettings": "日期和时间设置",
     "eventLogs": "事件日志",
@@ -176,6 +179,43 @@
     "toast": {
       "errorSaveDateTimeSettings": "保存错误日期和时间设置。",
       "successSaveDateTimeSettings": "成功节省了日期和时间设置。"
+    }
+  },
+  "pageFactoryReset": {
+    "description": "这些功能不会执行任何敏感数据的安全删除。",
+    "form": {
+      "resetOptionsLabel": "重置选项",
+      "resetBiosOptionLabel": "仅重置服务器设置",
+      "resetBiosOptionHelperText": "重置固件设置,包括：平台密钥库,分区NVRAM和分区配置。",
+      "resetToDefaultsOptionLabel": "重置BMC和服务器设置",
+      "resetToDefaultsOptionHelperText": "除了服务器设置外,此选项还重置BMC设置,包括:所有BMC帐户数据,所有更改的密码,所有策略,LDAP配置,网络地址和时间。"
+    },
+    "modal": {
+      "resetBiosTitle": "重置服务器设置",
+      "resetBiosHeader": "您想重置服务器设置吗？",
+      "resetBiosSubmitText": "重置服务器设置",
+      "resetBiosSettingsList": {
+        "item1": "所有手动设置将被删除。",
+        "item2": "如果存在备份,可以恢复分区配置和平台密钥库。"
+      },
+      "resetToDefaultsTitle": "重置BMC和服务器设置",
+      "resetToDefaultsHeader": "您想重置BMC和服务器设置吗?",
+      "resetToDefaultsSubmitText": "重置BMC和服务器设置",
+      "resetToDefaultsSettingsList": {
+        "item1": "所有手动设置将被删除。",
+        "item2": "如果存在备份,可以恢复分区配置和平台密钥库。",
+        "item3": "所有BMC日志都将被删除。",
+        "item4": "当前在所有网络接口上的活动会话将被断开连接。",
+        "item5": "将还原BMC默认帐户和密码设置。"
+      },
+      "resetWarningMessage": "重置而不关闭系统可能会导致无法恢复的错误。",
+      "resetWarningCheckLabel": "继续不关闭系统"
+    },
+    "toast": {
+      "resetBiosSuccess": "服务器设置的出厂重置成功。",
+      "resetBiosError": "服务器设置的出厂重置失败。",
+      "resetToDefaultsSuccess": " BMC和服务器设置的工厂重置成功。",
+      "resetToDefaultsError": " BMC和服务器设置的出厂重置失败。"
     }
   },
   "pageEventLogs": {
