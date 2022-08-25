@@ -117,6 +117,7 @@
     "serverPowerOperations": "@:appPageTitle.serverPowerOperations",
     "snmpSettings": "@:appPageTitle.snmpSettings",
     "sslCertificates": "@:appPageTitle.sslCertificates",
+    "IPManagement": "@:appPageTitle.IPManagement",
     "virtualMedia": "@:appPageTitle.virtualMedia"
   },
   "appPageTitle": {
@@ -141,7 +142,8 @@
     "serverPowerOperations": "服务器电源操作",
     "snmpSettings": "SNMP设置",
     "sslCertificates": "SSL证书",
-    "virtualMedia": "虚拟媒体"
+    "virtualMedia": "虚拟媒体",
+    "IPManagement": "黑名单"
   },
   "pageChangePassword": {
     "changePassword": "更改密码",
@@ -432,6 +434,67 @@
       "successDeleteUser": "删除用户'%{用户名}'。",
       "successSaveSettings": "成功保存的帐户设置。",
       "successUpdateUser": "更新的用户'%{用户名}'。"
+    }
+  },
+  "pageIPManagement": {
+    "accountPolicySettings":"帐户策略设置",
+    "addIP":"添加IP",
+    "deleteIP":"删除IP |删除IP",
+    "editIP":"编辑IP",
+    "viewPrivilegeRoleDescriptions":"查看特权角色描述",
+    "number": "序号",
+    "delete": "删除",
+    "modal":{
+      "accountLocked": "帐户被锁定",
+      "accountStatus": "帐户状态",
+      "automaticAfterTimeout":"超时后自动",
+      "batchDeleteConfirmMessage":"您确定要删除%{count} ip吗?无法撤消此操作。|确定要删除%{count} ips?无法撤消此操作。",
+      "cannotStartWithANumber":"不能从数字开始",
+      "clickSaveToUnlockAccount":"单击\"保存\"解锁帐户",
+      "confirmIPPassword":"确认IP密码",
+      "deleteConfirmMessage":"您确定要删除IP'%{ip}'吗?",
+      "manual": "手动的",
+      "maxFailedLoginAttempts":"最大登录尝试",
+      "noSpecialCharactersExceptUnderscore":"除了下划线,没有特殊角色",
+      "passwordMustBeBetween":"密码必须在%{min}  - %{max}字符之间",
+      "passwordsDoNotMatch": "密码不匹配",
+      "privilege": "特权",
+      "timeoutDurationSeconds":"超时持续时间（秒）",
+      "unlock": "开锁",
+      "ipname":" IP",
+      "ipPassword":" IP密码",
+      "ipUnlockMethod":" IP解锁方法"
+    },
+    "table":{
+      "privilege": "特权",
+      "status": "地位",
+      "ipname": "IP",
+      "UserName": "用户名"
+    },
+    "tableRoles":{
+      "configureComponentsManagedByThisService":"配置由此服务管理的组件",
+      "configureManagerResources":"配置管理器资源",
+      "configureIPsAndTheirAccounts":"配置IP及其帐户",
+      "logInToTheServiceAndReadResources":"登录到服务并阅读资源",
+      "updatePasswordForCurrentIPAccount":"当前IP帐户的更新密码"
+    },
+    "toast":{
+      "errorBatchDelete":"错误删除%{count} ip。|错误删除%{count} ips。",
+      "errorBatchDisable":"错误禁用%{count} ip。|错误禁用%{count} ips。",
+      "errorBatchEnable":"错误启用%{count} ip。|错误启用%{count} ips。",
+      "errorCreateIP":"错误创建IP'%{ipName}'。",
+      "errorDeleteIP":"错误删除IP'%{ipName}'。",
+      "errorLoadAccountSettings":"错误加载帐户设置",
+      "errorLoadIPs":"错误加载ips。",
+      "errorSaveSettings":"保存错误的帐户设置。",
+      "errorUpdateIP":"错误更新IP'%{ipName}'。",
+      "successBatchDelete":"成功删除%{count} ip。|成功删除%{count} ips。",
+      "successBatchDisable":"成功禁用%{count} ip。|成功禁用%{count} ips。",
+      "successBatchEnable":"成功启用%{count} ip。|成功启用%{count} ips。",
+      "successCreateIP":"创建IP'%{ipName}'。",
+      "successDeleteIP":"删除IP'%{ipName}'。",
+      "successSaveSettings":"成功保存的帐户设置。",
+      "successUpdateIP":"更新的IP'%{ipName}'。"
     }
   },
   "language": {

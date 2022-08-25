@@ -92,15 +92,18 @@ export default {
       fields: [
         {
           key: 'number',
-          label: 'number',
+          label: this.$t('pageIPManagement.number'),
         },
         {
           key: 'ipname',
-          label: this.$t('pageIPManagement.table.ipname') + '/UserName',
+          label:
+            this.$t('pageIPManagement.table.ipname') +
+            '/' +
+            this.$t('pageIPManagement.table.UserName'),
         },
         {
           key: 'actions',
-          label: 'delete',
+          label: this.$t('pageIPManagement.delete'),
           tdClass: 'text-right text-nowrap',
         },
       ],
