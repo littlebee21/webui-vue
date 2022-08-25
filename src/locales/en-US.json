@@ -722,6 +722,10 @@
     }
   },
   "pageServerPowerOperations": {
+    "noRunDescrip": "Not run Server when power on",
+    "runDescrip": "auto run when power on",
+    "powerStra": "Power Strategy",
+    "save": "save",
     "currentStatus": "Current status",
     "hostOsBootSettings": "Host OS boot settings",
     "hostStatus": "Host status",

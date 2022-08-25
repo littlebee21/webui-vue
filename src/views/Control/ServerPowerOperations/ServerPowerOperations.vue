@@ -135,25 +135,30 @@
     </b-row>
     <b-row>
       <b-col>
-        <page-section section-title="Power Strategy">
+        <page-section
+          :section-title="$t('pageServerPowerOperations.powerStra')"
+        >
           <b-col sm="8" md="6" xl="4">
             <b-form-group>
               <dl>
-                <dt>current status: {{ CurrentPowerOnStrategy }}</dt>
+                <dt>
+                  {{ $t('pageServerPowerOperations.currentStatus') }}
+                  {{ CurrentPowerOnStrategy }}
+                </dt>
               </dl>
               <b-form-radio
                 v-model="choosePowerOnStrategy"
                 name="Power on Operation"
                 value="auto"
               >
-                auto run when power on
+                {{ $t('pageServerPowerOperations.runDescrip') }}
               </b-form-radio>
               <b-form-radio
                 v-model="choosePowerOnStrategy"
                 name="Power on Operation"
                 value="no"
               >
-                Not run Server when power on
+                {{ $t('pageServerPowerOperations.noRunDescrip') }}
               </b-form-radio>
             </b-form-group>
             <b-button
@@ -162,7 +167,7 @@
               data-test-id="serverPowerOperations-button-reboot"
               @click="PowerOnStrategySave"
             >
-              save
+              {{ $t('pageServerPowerOperations.save') }}
             </b-button>
           </b-col>
         </page-section>

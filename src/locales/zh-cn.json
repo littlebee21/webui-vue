@@ -717,6 +717,10 @@
     }
   },
   "pageServerPowerOperations": {
+    "noRunDescrip": "电源接通时服务器不自动运行",
+    "runDescrip": "电源接通时服务器自动运行",
+    "powerStra": "服务器启动策略",
+    "save": "保存",
     "currentStatus": "当前状态",
     "hostOsBootSettings": "主机OS启动设置",
     "hostStatus": "主机状态",
