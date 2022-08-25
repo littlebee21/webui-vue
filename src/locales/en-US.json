@@ -666,10 +666,11 @@
     }
   },
   "pageFan": {
+    "fanSpeedWantDes": "Enter speed you want 0-100",
     "informations":{
       "userManual":"User Manual",
-      "AutoControlInformation": "   The automatic control is only set after the server is turned on, after the server is turned off or the sensor fails to detect. fan full speed run, When the fan is unplugged or fails in the automatic control mode, the other fans run at full speed ",
-      "ManualControlInformaiton": "fan speed control Use percentage control, but return value use 0-255 pwm, 0 is full speed"
+      "AutoControlInformation": "Automatic control mode: manual control and automatic control are mutually exclusive. The default is automatic control mode. In case of abnormality, the fan runs at full speed. During startup and restart, the fan runs at full speed to prevent the hardware temperature from being too high after the server is down",
+      "ManualControlInformaiton": "Manual control mode: the fan speed is controlled by percentage, 0 is the lowest speed, and 100 is the highest speed"
     },
     "controllers":{
       "yes": "Yes",
@@ -679,8 +680,9 @@
     "policies":{
       "policiesTitle":"Fan policies",
       "CurrentPatten":"Current Pattern :",
-        "fantitle": "Fan Controller",
-        "FanSpeed": "fan speed :"
+      "fantitle": "Fan Controller",
+      "FanSpeed": "fan speed :",
+      "message": "message"
     },
       "AutoControlTitle": "AutoControl",
       "ManualControlTitle": "ManualControl"

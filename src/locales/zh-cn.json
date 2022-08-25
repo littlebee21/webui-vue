@@ -97,6 +97,7 @@
   },
   "appNavigation": {
     "accessControl": "访问控制",
+    "fan": "@:appPageTitle.fan",
     "factoryReset": "@:appPageTitle.factoryReset",
     "configuration": "配置",
     "control": "控制",
@@ -124,6 +125,7 @@
   },
   "appPageTitle": {
     "factoryReset": "恢复出厂设置",
+    "fan": "风扇控制",
     "changePassword": "更改密码",
     "dateTimeSettings": "日期和时间设置",
     "eventLogs": "事件日志",
@@ -656,6 +658,28 @@
       "errorRebootStart": "重新启动BMC的错误。",
       "successRebootStart": "重新启动BMC。"
     }
+  },
+  "pageFan":{
+    "fanSpeedWantDes":"输入速度您想要0-100",
+    "informations":{
+      "userManual":"用户手册",
+      "AutoControlInformation":"自动控制模式：手动控制和自动控制互斥, 默认为自动控制模式，出现异常, 风扇全速运行。在开机和重启时风扇进行全速运行防止服务器宕机后的硬件温度持续过高",
+      "ManualControlInformaiton":"手动控制模式：风扇速度控制使用百分比控制, 0是最低速度, 100为最高速度"
+    },
+    "controllers":{
+      "yes": "是",
+      "No":"否",
+      "confirmPattern":"确认"
+    },
+    "policies":{
+      "policiesTitle":"风扇控制策略: ",
+      "CurrentPatten":"当前模式:",
+      "fantitle":"风扇控制器",
+      "FanSpeed": "风扇转速 :",
+      "message": "返回信息"
+    },
+      "AutoControlTitle": "自我控制",
+      "ManualControlTitle": "手动控制"
   },
   "pageSensors": {
     "exportFilePrefix": "传感器_",

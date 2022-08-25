@@ -19,7 +19,7 @@
         <dt>{{ $t('pageFan.policies.policiesTitle') }}</dt>
         <dd>{{ $t('pageFan.policies.CurrentPatten') }} {{ currentPattern }}</dd>
         <dd>{{ $t('pageFan.policies.FanSpeed') }} {{ currentFanSpeed }}</dd>
-        <dd>message: {{ message }}</dd>
+        <dd>{{ $t('pageFan.policies.message') }}: {{ message }}</dd>
       </dl>
     </b-row>
     <b-row class="d-block mt-5">
@@ -36,7 +36,7 @@
         <b-col cols="4">
           <b-form-input
             v-model="fanSpeedWanted"
-            placeholder="Enter speed you want 0-100"
+            :placeholder="$t('pageFan.fanSpeedWantDes')"
           >
           </b-form-input>
         </b-col>
