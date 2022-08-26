@@ -28,6 +28,7 @@ import DateTimeStore from './modules/Configuration/DateTimeSettingsStore';
 import VirtualMediaStore from './modules/Control/VirtualMediaStore';
 import FanControlStore from './modules/Control/FanControlStore';
 import IPManagementStore from './modules/AccessControl/IPManagementStore';
+import SnmpSettingStore from './modules/Configuration/SnmpSettingStore';
 
 Vue.use(Vuex);
 
@@ -61,6 +62,7 @@ export default new Vuex.Store({
     factoryReset: FactoryResetStore,
     virtualMedia: VirtualMediaStore,
     fanControl: FanControlStore,
+    snmpSetting: SnmpSettingStore,
   },
   plugins: [WebSocketPlugin],
 });

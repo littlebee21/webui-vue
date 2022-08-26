@@ -26,6 +26,7 @@ import SslCertificates from '@/views/AccessControl/SslCertificates';
 import VirtualMedia from '@/views/Control/VirtualMedia';
 import FactoryReset from '@/views/Control/FactoryReset';
 import IPManagement from '@/views/AccessControl/IPManagement';
+import SnmpSettings from '@/views/Configuration/SNMP';
 
 import i18n from '@/i18n';
 import Fan from '@/views/Control/Fan';
@@ -172,6 +173,14 @@ const routes = [
         component: Firmware,
         meta: {
           title: i18n.t('appPageTitle.firmware'),
+        },
+      },
+      {
+        path: '/configuration/snmpSettings',
+        name: ' SnmpSettings',
+        component: SnmpSettings,
+        meta: {
+          title: i18n.t('appPageTitle.snmpSettings'),
         },
       },
       {
