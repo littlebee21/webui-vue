@@ -133,6 +133,11 @@ const AppNavigationMixin = {
               label: this.$t('appNavigation.powerRestorePolicy'),
               route: '/settings/power-restore-policy',
             },
+            {
+              id: 'snmp-settings',
+              label: this.$t('appNavigation.snmpSettings'),
+              route: '/settings/snmpSettings',
+            },
           ],
         },
         {

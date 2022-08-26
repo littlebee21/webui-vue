@@ -374,6 +374,16 @@
     "connecting": "连接",
     "disconnected": "断开连接"
   },
+  "pageSnmpSettings": {
+    "description":"使用主机名(或IP地址)和端口设置简单的网络管理协议(SNMP)",
+    "administrators":"管理员",
+    "ipaddress": "IP 地址",
+    "port": "接口",
+    "delete":"删除",
+    "addadmincount":"增加管理员数量",
+    "abort":"终止",
+    "save":"保存"
+  },
   "pageLdap": {
     "pageDescription": "配置LDAP设置并管理角色组",
     "roleGroups": "角色群",

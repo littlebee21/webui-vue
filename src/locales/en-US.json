@@ -527,6 +527,16 @@
     "connecting": "Connecting",
     "disconnected": "Disconnected"
   },
+  "pageSnmpSettings": {
+    "description":"Set up simple network management protocol (SNMP) using host name or IPaddress and port",
+    "administrators":"administrators",
+    "ipaddress": "IP address",
+    "port": "port",
+    "delete":"delete",
+    "addadmincount":"addAdminCount",
+    "abort":"abort",
+    "save":"save"
+  },
   "pageLdap": {
     "pageDescription": "Configure LDAP settings and manage role groups",
     "roleGroups": "Role groups",

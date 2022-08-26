@@ -30,6 +30,7 @@ import ServerPowerOperations from '@/views/Operations/ServerPowerOperations';
 import Certificates from '@/views/SecurityAndAccess/Certificates';
 import VirtualMedia from '@/views/Operations/VirtualMedia';
 import Power from '@/views/ResourceManagement/Power';
+import SnmpSettings from '@/views/Settings/SNMP';
 import i18n from '@/i18n';
 import Fan from '@/views/Operations/Fan';
 
@@ -231,6 +232,14 @@ const routes = [
         component: Network,
         meta: {
           title: i18n.t('appPageTitle.network'),
+        },
+      },
+      {
+        path: '/settings/snmpSettings',
+        name: ' SnmpSettings',
+        component: SnmpSettings,
+        meta: {
+          title: i18n.t('appPageTitle.snmpSettings'),
         },
       },
       {
