@@ -180,7 +180,7 @@
     },
     "toast": {
       "errorSaveDateTimeSettings": "保存错误日期和时间设置。",
-      "successSaveDateTimeSettings": "成功节省了日期和时间设置。"
+      "successSaveDateTimeSettings": "成功保存了日期和时间设置。"
     }
   },
   "pageFactoryReset": {
