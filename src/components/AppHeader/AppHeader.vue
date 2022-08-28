@@ -38,7 +38,7 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto helper-menu">
           <b-nav-item data-test-id="appHeader-container-health">
-            <status-icon :status="healthStatusIcon" />
+            <status-icon />
             {{ $t('appHeader.language') }}
             <b-dropdown variant="link" right>
               <b-dropdown-item @click="changeChinese">
