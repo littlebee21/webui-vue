@@ -70,6 +70,7 @@ export default {
         });
     },
     rebootBmc() {
+      this.$store.dispatch('authentication/logout');
       this.$store
         .dispatch('controls/rebootBmc')
         .then((message) => this.successToast(message))
