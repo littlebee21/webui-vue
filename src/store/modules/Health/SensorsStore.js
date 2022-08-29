@@ -1,6 +1,16 @@
 import api from '@/store/api';
 import { uniqBy } from 'lodash';
 
+function color(item) {
+  console.log(item);
+  if (item.Value >= item.CriticalHigh) return 'danger';
+  else if (item.Value >= item.WarningHigh) return 'warning';
+  else if (item.Value >= item.WarningLow) return 'success';
+  else if (item.Value >= item.CriticalLow) return 'warning';
+  else if (item.Value < item.CriticalLow) return 'danger';
+  else return 'light';
+}
+
 const SensorsStore = {
   namespaced: true,
   state: {
@@ -32,6 +42,7 @@ const SensorsStore = {
               lowerCaution: data[key].WarningLow,
               upperCritical: data[key].CriticalHigh,
               lowerCritical: data[key].CriticalLow,
+              _rowVariant: color(data[key]),
             });
             console.log(data[key].Value);
           });
