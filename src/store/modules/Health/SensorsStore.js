@@ -11,6 +11,15 @@ function color(item) {
   else return 'light';
 }
 
+function status(item) {
+  console.log(item);
+  if (item.Value >= item.CriticalHigh) return 'Critical';
+  else if (item.Value >= item.WarningHigh) return 'Warning';
+  else if (item.Value >= item.WarningLow) return 'OK';
+  else if (item.Value >= item.CriticalLow) return 'Warning';
+  else if (item.Value < item.CriticalLow) return 'Critical';
+  else return 'OK';
+}
 const SensorsStore = {
   namespaced: true,
   state: {
@@ -36,7 +45,7 @@ const SensorsStore = {
             }
             sensorData.push({
               name: key.split('/').pop(),
-              status: data[key].Functional,
+              status: status(data[key]),
               currentValue: data[key].Value,
               upperCaution: data[key].WarningHigh,
               lowerCaution: data[key].WarningLow,
