@@ -149,6 +149,11 @@ const AppNavigationMixin = {
               label: this.$t('appNavigation.sslCertificates'),
               route: '/access-control/ssl-certificates',
             },
+            {
+              id: 'activation',
+              label: this.$t('appNavigation.activation'),
+              route: '/access-control/activation',
+            },
           ],
         },
       ],

@@ -17,11 +17,26 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (store.getters['authentication/isLoggedIn']) {
+    if (!to.matched.some((record) => record.meta.requiresAuth)) {
       next();
       return;
     }
-    next('/login');
+    if (!store.getters['authentication/isLoggedIn']) {
+      next('/login');
+      return;
+    }
+    if (to.name === 'overview') {
+      next();
+      return;
+    }
+    if (
+      store.getters['activation/activateState'] !== 'pass' &&
+      to.name !== 'activation'
+    ) {
+      next('/access-control/activation');
+      return;
+    }
+    next();
   } else {
     next();
   }

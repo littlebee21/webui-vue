@@ -103,6 +103,7 @@
   "appNavigation": {
     "factoryReset": "@:appPageTitle.factoryReset",
     "fan": "@:appPageTitle.fan",
+    "activation": "@:appPageTitle.activation",
     "accessControl": "Access control",
     "configuration": "Configuration",
     "control": "Control",
@@ -131,6 +132,7 @@
   "appPageTitle": {
     "factoryReset": "Factory reset",
     "fan": "Fan Control",
+    "activation": "Activation",
     "changePassword": "Change password",
     "dateTimeSettings": "Date and time settings",
     "eventLogs": "Event logs",
@@ -555,6 +557,14 @@
       "successSaveSettings": "Successfully saved account settings.",
       "successUpdateIP": "Updated ip '%{ipname}'."
     }
+  },
+  "activation": {
+    "serverInformation": "Server information",
+    "send": "Confirm activation",
+    "activeStatus":"Status : ",
+    "alreadyActivated":"activated",
+    "activationCode":"Code : ",
+    "Information":"Activation code:"
   },
   "pageLogin": {
     "language": "Language",

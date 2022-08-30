@@ -27,6 +27,7 @@ import VirtualMedia from '@/views/Control/VirtualMedia';
 import FactoryReset from '@/views/Control/FactoryReset';
 import IPManagement from '@/views/AccessControl/IPManagement';
 import SnmpSettings from '@/views/Configuration/SNMP';
+import Activation from '@/views/AccessControl/Activation';
 
 import i18n from '@/i18n';
 import Fan from '@/views/Control/Fan';
@@ -157,6 +158,14 @@ const routes = [
         component: SslCertificates,
         meta: {
           title: i18n.t('appPageTitle.sslCertificates'),
+        },
+      },
+      {
+        path: '/access-control/activation',
+        name: 'activation',
+        component: Activation,
+        meta: {
+          title: i18n.t('appPageTitle.activation'),
         },
       },
       {
