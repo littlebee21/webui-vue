@@ -112,6 +112,7 @@
     "eventLogs": "@:appPageTitle.eventLogs",
     "factoryReset": "@:appPageTitle.factoryReset",
     "fan": "@:appPageTitle.fan",
+    "activation": "@:appPageTitle.activation",
     "accessControl": "Access control",
     "configuration": "Configuration",
     "control": "Control",
@@ -142,6 +143,7 @@
   "appPageTitle": {
     "factoryReset": "Factory reset",
     "fan": "Fan Control",
+    "activation": "Activation",
     "changePassword": "Change password",
     "power": "Power",
     "sessions": "Sessions",
@@ -713,6 +715,17 @@
       "successSaveSettings": "Successfully saved account settings.",
       "successUpdateIP": "Updated ip '%{ipname}'."
     }
+  },
+  "pageactivation": {
+    "activationCodeInputDes":"Please enter the activation code here"
+  },
+  "activation": {
+    "serverInformation": "Server information",
+    "send": "Confirm activation",
+    "activeStatus":"Status : ",
+    "alreadyActivated":"activated",
+    "activationCode":"Code : ",
+    "Information":"Activation code:"
   },
   "pageLogin": {
     "language": "Language",

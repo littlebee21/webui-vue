@@ -31,6 +31,7 @@ import Certificates from '@/views/SecurityAndAccess/Certificates';
 import VirtualMedia from '@/views/Operations/VirtualMedia';
 import Power from '@/views/ResourceManagement/Power';
 import SnmpSettings from '@/views/Settings/SNMP';
+import Activation from '@/views/SecurityAndAccess/Activation';
 import i18n from '@/i18n';
 import Fan from '@/views/Operations/Fan';
 
@@ -184,6 +185,14 @@ const routes = [
         component: Certificates,
         meta: {
           title: i18n.t('appPageTitle.certificates'),
+        },
+      },
+      {
+        path: '/security-and-access/activation',
+        name: 'activation',
+        component: Activation,
+        meta: {
+          title: i18n.t('appPageTitle.activation'),
         },
       },
       {
