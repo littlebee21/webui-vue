@@ -151,6 +151,15 @@
                   <template v-if="!$v.form.password.required">
                     {{ $t('global.form.fieldRequired') }}
                   </template>
+                  <template v-if="!$v.form.password.noBeginWithNum">
+                    {{ $t('pageUserManagement.noBeginWithNum') }}
+                  </template>
+                  <template v-if="!$v.form.password.mustContainCase">
+                    {{ $t('pageUserManagement.mustContainCase') }}
+                  </template>
+                  <template v-if="!$v.form.password.notContainUsername">
+                    {{ $t('pageUserManagement.notContainUsername') }}
+                  </template>
                   <template
                     v-if="
                       !$v.form.password.minLength || !$v.form.password.maxLength
@@ -302,8 +311,18 @@ export default {
           required: requiredIf(function () {
             return this.requirePassword();
           }),
+          notContainUsername: function () {
+            return this.form.password.includes(this.form.username)
+              ? false
+              : true;
+          },
           minLength: minLength(this.passwordRequirements.minLength),
           maxLength: maxLength(this.passwordRequirements.maxLength),
+          noBeginWithNum: helpers.regex('pattern', /^(?!\d)[\w]+$/),
+          mustContainCase: helpers.regex(
+            'pattern',
+            /.(?=.*?[a-z])(?=.*?[A-Z]).*$/
+          ),
         },
         passwordConfirmation: {
           required: requiredIf(function () {

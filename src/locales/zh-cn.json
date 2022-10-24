@@ -603,6 +603,9 @@
     }
   },
   "pageUserManagement": {
+    "noBeginWithNum": "密码不能以数字开头; ",
+    "mustContainCase": "密码除首字母外还必须包含大小写, 数字且不连续; ",
+    "notContainUsername": "密码不能包含用户名",
     "accountPolicySettings": "帐户政策设置",
     "addUser": "添加用户",
     "deleteUser": "删除用户| 删除用户",

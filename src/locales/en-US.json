@@ -602,6 +602,9 @@
     "english": "english"
   },
   "pageUserManagement": {
+    "noBeginWithNum": "Password Cannot start with a number; ",
+    "mustContainCase": "The password must contain uppercase and lowercase characters, numbers, and non consecutive characters in addition to the initial letter; ",
+    "notContainUsername": "The password can not contain userName",
     "accountPolicySettings": "Account policy settings",
     "addUser": "Add user",
     "deleteUser": "Delete user | Delete users",
