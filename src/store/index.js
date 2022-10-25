@@ -33,6 +33,7 @@ import WebSocketPlugin from './plugins/WebSocketPlugin';
 import DateTimeStore from './modules/Settings/DateTimeStore';
 import VirtualMediaStore from './modules/Operations/VirtualMediaStore';
 import FanControlStore from './modules/Operations/FanControlStore';
+import IPManagementStore from './modules/SecurityAndAccess/IPManagementStore';
 
 Vue.use(Vuex);
 
@@ -47,6 +48,7 @@ export default new Vuex.Store({
     dateTime: DateTimeStore,
     ldap: LdapStore,
     userManagement: UserManagementStore,
+    ipManagement: IPManagementStore,
     firmware: FirmwareStore,
     serverBootSettings: BootSettingsStore,
     controls: ControlStore,

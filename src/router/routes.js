@@ -11,6 +11,7 @@ import KvmConsole from '@/views/Operations/Kvm/KvmConsole';
 import Sessions from '../views/SecurityAndAccess/Sessions';
 import Ldap from '@/views/SecurityAndAccess/Ldap';
 import UserManagement from '@/views/SecurityAndAccess/UserManagement';
+import IPManagement from '@/views/SecurityAndAccess/IPManagement';
 import Login from '@/views/Login';
 import LoginLayout from '@/layouts/LoginLayout';
 import Network from '@/views/Settings/Network';
@@ -158,6 +159,14 @@ const routes = [
         component: UserManagement,
         meta: {
           title: i18n.t('appPageTitle.userManagement'),
+        },
+      },
+      {
+        path: '/security-and-access/IPManagement',
+        name: 'IPManagement',
+        component: IPManagement,
+        meta: {
+          title: i18n.t('appPageTitle.IPManagement'),
         },
       },
       {

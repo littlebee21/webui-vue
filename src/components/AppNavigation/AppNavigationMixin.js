@@ -156,6 +156,11 @@ const AppNavigationMixin = {
               route: '/security-and-access/user-management',
             },
             {
+              id: 'IPManagement',
+              label: this.$t('appNavigation.IPManagement'),
+              route: '/security-and-access/IPManagement',
+            },
+            {
               id: 'policies',
               label: this.$t('appNavigation.policies'),
               route: '/security-and-access/policies',
