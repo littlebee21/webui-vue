@@ -188,11 +188,12 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch('powerSupply/getAllPowerSupplies').finally(() => {
-      // Emit initial data fetch complete to parent component
-      this.$root.$emit('hardware-status-power-supplies-complete');
-      this.isBusy = false;
-    });
+    // this.$store.dispatch('powerSupply/getAllPowerSupplies').finally(() => {
+    //   // Emit initial data fetch complete to parent component
+    //   this.$root.$emit('hardware-status-power-supplies-complete');
+    //   this.isBusy = false;
+    // });
+    this.$store.dispatch('powerSupply/getPowerInfoMation');
   },
   methods: {
     sortCompare(a, b, key) {

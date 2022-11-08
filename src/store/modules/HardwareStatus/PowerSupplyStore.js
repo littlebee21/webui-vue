@@ -9,6 +9,9 @@ const PowerSupplyStore = {
     powerSupplies: (state) => state.powerSupplies,
   },
   mutations: {
+    appendPowerSupply: (state, powerSupplies) => {
+      state.powerSupplies = powerSupplies;
+    },
     setPowerSupply: (state, data) => {
       state.powerSupplies = data.map((powerSupply) => {
         const {
@@ -72,6 +75,26 @@ const PowerSupplyStore = {
       return await api
         .get(`${id}/Power`)
         .then(({ data: { PowerSupplies } }) => PowerSupplies || [])
+        .catch((error) => console.log(error));
+    },
+    //new getPowerInfoMation
+    async getPowerInfoMation({ commit }) {
+      return await api
+        .get('/redfish/v1/Chassis/chassis/Power')
+        .then(({ data: { members } }) => {
+          const powerData = [];
+          Object.keys(members).forEach((key) => {
+            powerData.push({
+              id: key.split('/').pop(),
+              name: key.split('/').pop(),
+              partNumber: members[key].PartNumber,
+              serialNumber: members[key].SerialNumber,
+              manufacturer: members[key].Manufacturer,
+              model: members[key].Model,
+            });
+          });
+          commit('appendPowerSupply', powerData);
+        })
         .catch((error) => console.log(error));
     },
   },
