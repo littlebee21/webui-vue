@@ -37,11 +37,11 @@ const AppNavigationMixin = {
               label: this.$t('appNavigation.eventLogs'),
               route: '/logs/event-logs',
             },
-            {
-              id: 'post-code-logs',
-              label: this.$t('appNavigation.postCodeLogs'),
-              route: '/logs/post-code-logs',
-            },
+            // {
+            //   id: 'post-code-logs',
+            //   label: this.$t('appNavigation.postCodeLogs'),
+            //   route: '/logs/post-code-logs',
+            // },
           ],
         },
         {
@@ -76,11 +76,11 @@ const AppNavigationMixin = {
               label: this.$t('appNavigation.kvm'),
               route: '/operations/kvm',
             },
-            {
-              id: 'key-clear',
-              label: this.$t('appNavigation.keyClear'),
-              route: '/operations/key-clear',
-            },
+            // {
+            //   id: 'key-clear',
+            //   label: this.$t('appNavigation.keyClear'),
+            //   route: '/operations/key-clear',
+            // },
             {
               id: 'firmware',
               label: this.$t('appNavigation.firmware'),
@@ -145,11 +145,11 @@ const AppNavigationMixin = {
           label: this.$t('appNavigation.securityAndAccess'),
           icon: 'iconSecurityAndAccess',
           children: [
-            {
-              id: 'sessions',
-              label: this.$t('appNavigation.sessions'),
-              route: '/security-and-access/sessions',
-            },
+            // {
+            //   id: 'sessions',
+            //   label: this.$t('appNavigation.sessions'),
+            //   route: '/security-and-access/sessions',
+            // },
             {
               id: 'ldap',
               label: this.$t('appNavigation.ldap'),
@@ -182,18 +182,18 @@ const AppNavigationMixin = {
             },
           ],
         },
-        {
-          id: 'resource-management',
-          label: this.$t('appNavigation.resourceManagement'),
-          icon: 'iconResourceManagement',
-          children: [
-            {
-              id: 'power',
-              label: this.$t('appNavigation.power'),
-              route: '/resource-management/power',
-            },
-          ],
-        },
+        // {
+        //   id: 'resource-management',
+        //   label: this.$t('appNavigation.resourceManagement'),
+        //   icon: 'iconResourceManagement',
+        //   children: [
+        //     {
+        //       id: 'power',
+        //       label: this.$t('appNavigation.power'),
+        //       route: '/resource-management/power',
+        //     },
+        //   ],
+        // },
       ],
     };
   },

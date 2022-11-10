@@ -12,7 +12,7 @@
               v-model="resetOption"
               stacked
             >
-              <b-form-radio
+              <!-- <b-form-radio
                 class="mb-1"
                 value="resetBios"
                 aria-describedby="reset-bios"
@@ -22,7 +22,7 @@
               </b-form-radio>
               <b-form-text id="reset-bios" class="ml-4 mb-3">
                 {{ $t('pageFactoryReset.form.resetBiosOptionHelperText') }}
-              </b-form-text>
+              </b-form-text> -->
 
               <b-form-radio
                 class="mb-1"
