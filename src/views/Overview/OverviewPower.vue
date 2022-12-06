@@ -25,7 +25,20 @@
 <script>
 import OverviewCard from './OverviewCard';
 import DataFormatterMixin from '@/components/Mixins/DataFormatterMixin';
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
+
+function getPowerProperty(state, property) {
+  var powerConsumption = 0;
+  var powerCap = 0;
+  state.sensors.sensors.forEach((item) => {
+    if (item.name.search('Total_power') != -1) {
+      powerConsumption += item.currentValue;
+      powerCap += item.upperCritical;
+    }
+  });
+  if (property == 'powerConsumption') return powerConsumption;
+  if (property == 'powerCap') return powerCap;
+}
 
 export default {
   name: 'Power',
@@ -34,12 +47,16 @@ export default {
   },
   mixins: [DataFormatterMixin],
   computed: {
-    ...mapGetters({
-      powerCapValue: 'powerControl/powerCapValue',
-      powerConsumptionValue: 'powerControl/powerConsumptionValue',
+    ...mapState({
+      // powerCapValue: 'powerControl/powerCapValue',
+      powerCapValue: (state) => getPowerProperty(state, 'powerCap'),
+      // powerConsumptionValue: 'powerControl/powerConsumptionValue',
+      powerConsumptionValue: (state) =>
+        getPowerProperty(state, 'powerConsumption'),
     }),
   },
   created() {
+    this.$store.dispatch('sensors/oldGetEnumSensors');
     this.$store.dispatch('powerControl/getPowerControl').finally(() => {
       this.$root.$emit('overview-power-complete');
     });
