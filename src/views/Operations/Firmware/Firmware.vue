@@ -13,7 +13,7 @@
         <bmc-cards :is-page-disabled="isPageDisabled" />
 
         <!-- Host Firmware -->
-        <host-cards v-if="!isSingleFileUploadEnabled" />
+        <host-cards />
       </b-col>
     </b-row>
 
