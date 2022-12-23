@@ -1,26 +1,47 @@
 import api from '@/store/api';
 
-const HOST_STATE = {
-  on: 'xyz.openbmc_project.State.Host.HostState.Running',
-  off: 'xyz.openbmc_project.State.Host.HostState.Off',
-  error: 'xyz.openbmc_project.State.Host.HostState.Quiesced',
-  diagnosticMode: 'xyz.openbmc_project.State.Host.HostState.DiagnosticMode',
+// const HOST_STATE = {
+//   on: 'xyz.openbmc_project.State.Host.HostState.Running',
+//   off: 'xyz.openbmc_project.State.Host.HostState.Off',
+//   error: 'xyz.openbmc_project.State.Host.HostState.Quiesced',
+//   diagnosticMode: 'xyz.openbmc_project.State.Host.HostState.DiagnosticMode',
+// };
+
+const CLASSIS_STATE = {
+  on: 'xyz.openbmc_project.State.Chassis.PowerState.On',
+  off: 'xyz.openbmc_project.State.Chassis.PowerState.Off',
+  warmReboot: 'xyz.openbmc_project.State.Host.Transition.ForceWarmReboot',
 };
 
-const serverStateMapper = (hostState) => {
-  switch (hostState) {
-    case HOST_STATE.on:
+// const serverStateMapper = (hostState) => {
+//   switch (hostState) {
+//     case HOST_STATE.on:
+//     case 'On': // Redfish PowerState
+//       return 'on';
+//     case HOST_STATE.off:
+//     case 'Off': // Redfish PowerState
+//       return 'off';
+//     case HOST_STATE.error:
+//     case 'Quiesced': // Redfish Status
+//       return 'error';
+//     case HOST_STATE.diagnosticMode:
+//     case 'InTest': // Redfish Status
+//       return 'diagnosticMode';
+//     default:
+//       return 'unreachable';
+//   }
+// };
+
+const classisStateMapper = (classisState) => {
+  switch (classisState) {
+    case CLASSIS_STATE.on:
     case 'On': // Redfish PowerState
       return 'on';
-    case HOST_STATE.off:
+    case CLASSIS_STATE.off:
     case 'Off': // Redfish PowerState
       return 'off';
-    case HOST_STATE.error:
-    case 'Quiesced': // Redfish Status
-      return 'error';
-    case HOST_STATE.diagnosticMode:
-    case 'InTest': // Redfish Status
-      return 'diagnosticMode';
+    case CLASSIS_STATE.warmReboot:
+      return 'on';
     default:
       return 'unreachable';
   }
@@ -59,7 +80,9 @@ const GlobalStore = {
       (state.serialNumber = serialNumber),
     setBmcTime: (state, bmcTime) => (state.bmcTime = bmcTime),
     setServerStatus: (state, serverState) =>
-      (state.serverStatus = serverStateMapper(serverState)),
+      (state.serverStatus = classisStateMapper(serverState)),
+    setServerStatusDirect: (state, serverState) =>
+      (state.serverStatus = serverState),
     setLanguagePreference: (state, language) =>
       (state.languagePreference = language),
     setUsername: (state, username) => (state.username = username),
@@ -82,7 +105,7 @@ const GlobalStore = {
         })
         .catch((error) => console.log(error));
     },
-    getSystemInfo({ commit }) {
+    getSystemInfo({ commit, dispatch }) {
       api
         .get('/redfish/v1/Systems/system')
         .then(
@@ -90,7 +113,7 @@ const GlobalStore = {
             data: {
               AssetTag,
               Model,
-              PowerState,
+              // PowerState,
               SerialNumber,
               Status: { State } = {},
             },
@@ -102,13 +125,43 @@ const GlobalStore = {
               // OpenBMC's host state interface is mapped to 2 Redfish
               // properties "Status""State" and "PowerState". Look first
               // at State for certain cases.
-              commit('setServerStatus', State);
+              // commit('setServerStatus', State);
             } else {
-              commit('setServerStatus', PowerState);
+              // commit('setServerStatus', PowerState);
             }
           }
         )
+        .then(dispatch('getPowerState'))
         .catch((error) => console.log(error));
+    },
+    async getPowerState({ commit, getters }) {
+      var powerStateHost;
+      var powerStateChassis;
+      var powerState;
+      await api
+        .get('/xyz/openbmc_project/state/host0')
+        .then(({ data: { data } }) => {
+          powerStateHost = data.RequestedHostTransition;
+          console.log('powerState is ', data.RequestedPowerTransition);
+        })
+        .catch((error) => console.log(error));
+      await api
+        .get('/xyz/openbmc_project/state/chassis0')
+        .then(({ data: { data } }) => {
+          powerStateChassis = data.CurrentPowerState;
+          console.log('powerState is ', data.CurrentPowerState);
+        })
+        .catch((error) => console.log(error));
+      if (
+        classisStateMapper(powerStateHost) === 'on' ||
+        classisStateMapper(powerStateChassis) === 'on'
+      ) {
+        powerState = 'on';
+      } else {
+        powerState = 'off';
+      }
+      commit('setServerStatusDirect', powerState);
+      return console.log('serve state is ', getters.serverStatus);
     },
   },
 };
