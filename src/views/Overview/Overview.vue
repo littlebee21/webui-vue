@@ -18,7 +18,7 @@
     <page-section :section-title="$t('pageOverview.statusInformation')">
       <b-card-group deck>
         <overview-events />
-        <overview-inventory />
+        <!-- <overview-inventory /> -->
         <overview-dumps v-if="showDumps" />
       </b-card-group>
     </page-section>
@@ -30,7 +30,7 @@ import LoadingBarMixin from '@/components/Mixins/LoadingBarMixin';
 import OverviewDumps from './OverviewDumps.vue';
 import OverviewEvents from './OverviewEvents.vue';
 import OverviewFirmware from './OverviewFirmware.vue';
-import OverviewInventory from './OverviewInventory.vue';
+// import OverviewInventory from './OverviewInventory.vue';
 import OverviewNetwork from './OverviewNetwork';
 import OverviewPower from './OverviewPower';
 import OverviewQuickLinks from './OverviewQuickLinks';
@@ -44,7 +44,7 @@ export default {
     OverviewDumps,
     OverviewEvents,
     OverviewFirmware,
-    OverviewInventory,
+    // OverviewInventory,
     OverviewNetwork,
     OverviewPower,
     OverviewQuickLinks,

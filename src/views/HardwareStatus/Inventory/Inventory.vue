@@ -3,7 +3,7 @@
     <page-title />
 
     <!-- Service indicators -->
-    <service-indicator />
+    <!-- <service-indicator /> -->
 
     <!-- Quicklinks section -->
     <page-section :section-title="$t('pageInventory.quicklinkTitle')">
@@ -50,7 +50,7 @@
 
 <script>
 import PageTitle from '@/components/Global/PageTitle';
-import ServiceIndicator from './InventoryServiceIndicator';
+// import ServiceIndicator from './InventoryServiceIndicator';
 import TableSystem from './InventoryTableSystem';
 import TablePowerSupplies from './InventoryTablePowerSupplies';
 import TableDimmSlot from './InventoryTableDimmSlot';
@@ -68,7 +68,7 @@ import { chunk } from 'lodash';
 export default {
   components: {
     PageTitle,
-    ServiceIndicator,
+    // ServiceIndicator,
     TableDimmSlot,
     TablePowerSupplies,
     TableSystem,
