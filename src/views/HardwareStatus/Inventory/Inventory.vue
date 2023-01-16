@@ -32,19 +32,19 @@
     <table-chassis ref="chassis" />
 
     <!-- DIMM slot table -->
-    <table-dimm-slot ref="dimms" />
+    <!-- <table-dimm-slot ref="dimms" /> -->
 
     <!-- Fans table -->
-    <table-fans ref="fans" />
+    <!-- <table-fans ref="fans" /> -->
 
     <!-- Power supplies table -->
-    <table-power-supplies ref="powerSupply" />
+    <!-- <table-power-supplies ref="powerSupply" /> -->
 
     <!-- Processors table -->
-    <table-processors ref="processors" />
+    <!-- <table-processors ref="processors" /> -->
 
     <!-- Assembly table -->
-    <table-assembly ref="assembly" />
+    <!-- <table-assembly ref="assembly" /> -->
   </b-container>
 </template>
 
@@ -52,13 +52,13 @@
 import PageTitle from '@/components/Global/PageTitle';
 // import ServiceIndicator from './InventoryServiceIndicator';
 import TableSystem from './InventoryTableSystem';
-import TablePowerSupplies from './InventoryTablePowerSupplies';
-import TableDimmSlot from './InventoryTableDimmSlot';
-import TableFans from './InventoryTableFans';
+// import TablePowerSupplies from './InventoryTablePowerSupplies';
+// import TableDimmSlot from './InventoryTableDimmSlot';
+// import TableFans from './InventoryTableFans';
 import TableBmcManager from './InventoryTableBmcManager';
 import TableChassis from './InventoryTableChassis';
-import TableProcessors from './InventoryTableProcessors';
-import TableAssembly from './InventoryTableAssembly';
+// import TableProcessors from './InventoryTableProcessors';
+// import TableAssembly from './InventoryTableAssembly';
 import LoadingBarMixin from '@/components/Mixins/LoadingBarMixin';
 import PageSection from '@/components/Global/PageSection';
 import JumpLink16 from '@carbon/icons-vue/es/jump-link/16';
@@ -69,14 +69,14 @@ export default {
   components: {
     PageTitle,
     // ServiceIndicator,
-    TableDimmSlot,
-    TablePowerSupplies,
+    // TableDimmSlot,
+    // TablePowerSupplies,
     TableSystem,
-    TableFans,
+    // TableFans,
     TableBmcManager,
     TableChassis,
-    TableProcessors,
-    TableAssembly,
+    // TableProcessors,
+    // TableAssembly,
     PageSection,
     JumpLink: JumpLink16,
   },
@@ -108,36 +108,36 @@ export default {
           href: '#chassis',
           linkText: this.$t('pageInventory.chassis'),
         },
-        {
-          id: 'dimms',
-          dataRef: 'dimms',
-          href: '#dimms',
-          linkText: this.$t('pageInventory.dimmSlot'),
-        },
-        {
-          id: 'fans',
-          dataRef: 'fans',
-          href: '#fans',
-          linkText: this.$t('pageInventory.fans'),
-        },
-        {
-          id: 'powerSupply',
-          dataRef: 'powerSupply',
-          href: '#powerSupply',
-          linkText: this.$t('pageInventory.powerSupplies'),
-        },
-        {
-          id: 'processors',
-          dataRef: 'processors',
-          href: '#processors',
-          linkText: this.$t('pageInventory.processors'),
-        },
-        {
-          id: 'assembly',
-          dataRef: 'assembly',
-          href: '#assembly',
-          linkText: this.$t('pageInventory.assemblies'),
-        },
+        // {
+        //   id: 'dimms',
+        //   dataRef: 'dimms',
+        //   href: '#dimms',
+        //   linkText: this.$t('pageInventory.dimmSlot'),
+        // },
+        // {
+        //   id: 'fans',
+        //   dataRef: 'fans',
+        //   href: '#fans',
+        //   linkText: this.$t('pageInventory.fans'),
+        // },
+        // {
+        //   id: 'powerSupply',
+        //   dataRef: 'powerSupply',
+        //   href: '#powerSupply',
+        //   linkText: this.$t('pageInventory.powerSupplies'),
+        // },
+        // {
+        //   id: 'processors',
+        //   dataRef: 'processors',
+        //   href: '#processors',
+        //   linkText: this.$t('pageInventory.processors'),
+        // },
+        // {
+        //   id: 'assembly',
+        //   dataRef: 'assembly',
+        //   href: '#assembly',
+        //   linkText: this.$t('pageInventory.assemblies'),
+        // },
       ],
     };
   },
