@@ -10,8 +10,10 @@ const FirmwareStore = {
     hostActiveFirmwareId: null,
     applyTime: null,
     tftpAvailable: false,
+    activeHostFirmwareVersion: null,
   },
   getters: {
+    activeHostFirmwareVersion: (state) => state.activeHostFirmwareVersion,
     isTftpUploadAvailable: (state) => state.tftpAvailable,
     isSingleFileUploadEnabled: (state) => state.hostFirmware.length === 0,
     activeBmcFirmware: (state) => {
@@ -36,6 +38,8 @@ const FirmwareStore = {
     },
   },
   mutations: {
+    setActiveHostFirmwareVersion: (state, activeHostFirmwareVersion) =>
+      (state.activeHostFirmwareVersion = activeHostFirmwareVersion),
     setActiveBmcFirmwareId: (state, id) => (state.bmcActiveFirmwareId = id),
     setActiveHostFirmwareId: (state, id) => (state.hostActiveFirmwareId = id),
     setBmcFirmware: (state, firmware) => (state.bmcFirmware = firmware),
@@ -45,6 +49,15 @@ const FirmwareStore = {
       (state.tftpAvailable = tftpAvailable),
   },
   actions: {
+    async firmwareVersionGet({ commit }) {
+      return await api
+        .get('/redfish/v1/firmwareVersionGet')
+        .then(({ data: { version } }) => {
+          console.log('firmware Version got');
+          commit('setActiveHostFirmwareVersion', version);
+        })
+        .catch((error) => console.log(error));
+    },
     async getFirmwareInformation({ dispatch }) {
       dispatch('getActiveHostFirmware');
       dispatch('getActiveBmcFirmware');

@@ -361,6 +361,8 @@
     "getLogButtonName": "getlog"
   },
   "pageFirmware": {
+    "firmwareVersionGetAttention": "Attention: The host image version number needs to be obtained after the BIOS is started",
+    "firmwareVersionGet": "get Firmware Version",
     "cardActionSwitchToRunning": "Switch to running",
     "cardBodyVersion": "Version",
     "cardTitleBackup": "Backup image",

@@ -16,6 +16,22 @@
         <host-cards />
       </b-col>
     </b-row>
+    <b-row>
+      <b-col xl="10">
+        <dl>
+          <dd>{{ $t('pageFirmware.firmwareVersionGetAttention') }}</dd>
+        </dl>
+        <b-button
+          :disabled="disabled"
+          size="sm"
+          class="d-block mb-5"
+          variant="primary"
+          @click="firmwareVersionGet"
+        >
+          {{ btnText }}
+        </b-button>
+      </b-col>
+    </b-row>
 
     <!-- Update firmware-->
     <page-section
@@ -61,12 +77,20 @@ export default {
   },
   data() {
     return {
+      totalCount: 0,
+      disabled: false,
+      interval: undefined,
       loading,
       isServerPowerOffRequired:
         process.env.VUE_APP_SERVER_OFF_REQUIRED === 'true',
     };
   },
   computed: {
+    btnText() {
+      return this.totalCount !== 0
+        ? `${this.totalCount}秒再次获取`
+        : '获取版本号';
+    },
     serverStatus() {
       return this.$store.getters['global/serverStatus'];
     },
@@ -88,6 +112,26 @@ export default {
     this.$store
       .dispatch('firmware/getFirmwareInformation')
       .finally(() => this.endLoader());
+  },
+  methods: {
+    // auto control command
+    async firmwareVersionGet() {
+      this.totalCount = 10;
+      this.disabled = true;
+      await this.$store
+        .dispatch('firmware/firmwareVersionGet')
+        .catch((error) => console.log(error))
+        .finally();
+      this.interval = setInterval(() => {
+        this.totalCount--;
+        console.log('this.totalCount', this.totalCount);
+        if (this.totalCount <= 0) {
+          clearInterval(this.interval);
+          this.disabled = false;
+        }
+      }, 1000);
+      await this.$store.dispatch('firmware/getFirmwareInformation');
+    },
   },
 };
 </script>

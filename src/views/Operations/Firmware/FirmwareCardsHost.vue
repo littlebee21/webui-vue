@@ -49,7 +49,7 @@ export default {
       return this.$store.getters['firmware/backupHostFirmware'];
     },
     runningVersion() {
-      return this.running?.version || '--';
+      return this.$store.getters['firmware/activeHostFirmwareVersion'];
     },
     backupVersion() {
       return this.backup?.version || '--';

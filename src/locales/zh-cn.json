@@ -359,6 +359,8 @@
     "getLogButtonName": "获取日志"
   },
   "pageFirmware":{
+    "firmwareVersionGetAttention": "注意: 主机镜像版本号需要在BIOS启动之后才能获取",
+    "firmwareVersionGet": "获取固件版本号",
     "cardActionSwitchToRunning":"切换到运行",
     "cardBodyVersion": "版本",
     "cardTitleBackup":"备份镜像",
