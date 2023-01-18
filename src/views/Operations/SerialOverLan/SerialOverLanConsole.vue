@@ -26,12 +26,12 @@
         </dl>
       </b-col>
 
-      <b-col v-if="!isFullWindow" class="d-flex justify-content-end">
+      <!-- <b-col v-if="!isFullWindow" class="d-flex justify-content-end">
         <b-button variant="link" type="button" @click="openConsoleWindow()">
           <icon-launch />
           {{ $t('pageSerialOverLan.openNewTab') }}
         </b-button>
-      </b-col>
+      </b-col> -->
     </b-row>
     <div id="terminal" ref="panel"></div>
   </div>
@@ -43,14 +43,14 @@ import { AttachAddon } from 'xterm-addon-attach';
 import { FitAddon } from 'xterm-addon-fit';
 import { Terminal } from 'xterm';
 import { throttle } from 'lodash';
-import IconLaunch from '@carbon/icons-vue/es/launch/20';
+// import IconLaunch from '@carbon/icons-vue/es/launch/20';
 import StatusIcon from '@/components/Global/StatusIcon';
 
 export default {
   name: 'SerialOverLanConsole',
   components: {
     Alert,
-    IconLaunch,
+    // IconLaunch,
     StatusIcon,
   },
   props: {
