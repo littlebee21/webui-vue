@@ -156,20 +156,18 @@ export default {
       }
     },
     dispatchWorkstationUpload(timerId) {
-      this.$store
-        .dispatch('firmware/uploadFirmware', this.file)
-        .catch(({ message }) => {
-          this.endLoader();
-          this.errorToast(message);
-          clearTimeout(timerId);
-        });
+      this.$store.dispatch('firmware/uploadFirmware', this.file).catch(() => {
+        this.endLoader();
+        // this.errorToast(message);
+        clearTimeout(timerId);
+      });
     },
     dispatchTftpUpload(timerId) {
       this.$store
         .dispatch('firmware/uploadFirmwareTFTP', this.tftpFileAddress)
-        .catch(({ message }) => {
+        .catch(() => {
           this.endLoader();
-          this.errorToast(message);
+          // this.errorToast(message);
           clearTimeout(timerId);
         });
     },
