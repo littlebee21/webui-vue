@@ -57,6 +57,15 @@ const NetworkStore = {
       (state.selectedInterfaceIndex = selectedInterfaceIndex),
   },
   actions: {
+    postDHCPSetting() {
+      return api
+        .post(`/redfish/v1/Managers/bmc/EthernetInterfaces/custom/dhcp/`, {
+          data: 'enable',
+        })
+        .catch((error) => console.log(error))
+        .finally();
+    },
+
     async getEthernetData({ commit }) {
       return await api
         .get('/redfish/v1/Managers/bmc/EthernetInterfaces')

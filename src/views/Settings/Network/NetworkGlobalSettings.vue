@@ -72,6 +72,24 @@
           </dd>
         </dl>
       </b-col>
+      <b-col md="3">
+        <dl>
+          <dt>Use DHCP</dt>
+          <dd>
+            <b-form-checkbox
+              id="useDHCPSwitch"
+              v-model="useDHCPState"
+              switch
+              @change="changeDHCPState"
+            >
+              <span v-if="useDHCPState">
+                {{ $t('global.status.enabled') }}
+              </span>
+              <span v-else>{{ $t('global.status.disabled') }}</span>
+            </b-form-checkbox>
+          </dd>
+        </dl>
+      </b-col>
     </b-row>
   </page-section>
 </template>
@@ -91,6 +109,7 @@ export default {
   data() {
     return {
       hostname: '',
+      useDHCPState: false,
     };
   },
   computed: {
@@ -152,6 +171,11 @@ export default {
         .dispatch('network/saveNtpState', state)
         .then((message) => this.successToast(message))
         .catch(({ message }) => this.errorToast(message));
+    },
+    changeDHCPState() {
+      if (this.useDHCPState == true) {
+        this.$store.dispatch('network/postDHCPSetting');
+      }
     },
     initSettingsModal() {
       this.$bvModal.show('modal-hostname');
