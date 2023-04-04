@@ -15,7 +15,7 @@
         </b-col>
 
         <b-col class="d-flex justify-content-end pr-1">
-          <b-button
+          <!-- <b-button
             v-if="isConnected"
             variant="link"
             type="button"
@@ -23,7 +23,7 @@
           >
             <icon-arrow-down />
             {{ $t('pageKvm.buttonCtrlAltDelete') }}
-          </b-button>
+          </b-button> -->
           <b-button
             v-if="!isFullWindow"
             variant="link"
@@ -44,7 +44,7 @@
 import RFB from '@novnc/novnc/core/rfb';
 import StatusIcon from '@/components/Global/StatusIcon';
 import IconLaunch from '@carbon/icons-vue/es/launch/20';
-import IconArrowDown from '@carbon/icons-vue/es/arrow--down/16';
+// import IconArrowDown from '@carbon/icons-vue/es/arrow--down/16';
 import { throttle } from 'lodash';
 
 const Connecting = 0;
@@ -53,7 +53,7 @@ const Disconnected = 2;
 
 export default {
   name: 'KvmConsole',
-  components: { StatusIcon, IconLaunch, IconArrowDown },
+  components: { StatusIcon, IconLaunch },
   props: {
     isFullWindow: {
       type: Boolean,
