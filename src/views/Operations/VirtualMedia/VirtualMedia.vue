@@ -9,11 +9,7 @@
           <b-row>
             <b-col v-for="(dev, $index) in proxyDevices" :key="$index" md="6">
               <b-form-group :label="dev.id" label-class="bold">
-                <form-file
-                  v-if="!dev.isActive"
-                  :id="concatId(dev.id)"
-                  v-model="dev.file"
-                >
+                <form-file :id="concatId(dev.id)" v-model="dev.file">
                   <template #invalid>
                     <b-form-invalid-feedback role="alert">
                       {{ $t('global.form.required') }}
@@ -155,7 +151,6 @@ export default {
           this.errorToast(
             this.$t('pageVirtualMedia.toast.serverClosedWithErrors')
           );
-        device.file = null;
         device.isActive = false;
       };
 
