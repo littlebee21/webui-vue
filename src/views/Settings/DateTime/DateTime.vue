@@ -223,6 +223,7 @@ export default {
     VuelidateMixin,
   ],
   beforeRouteLeave(to, from, next) {
+    clearInterval(this.timer);
     this.hideLoader();
     next();
   },
@@ -307,6 +308,9 @@ export default {
   created() {
     this.startLoader();
     this.setNtpValues();
+    this.timer = setInterval(() => {
+      this.$store.dispatch('global/getBmcTime'); //BMC的时间
+    }, 60000);
     Promise.all([
       this.$store.dispatch('global/getBmcTime'),
       this.$store.dispatch('dateTime/getNtpData'),
