@@ -359,6 +359,11 @@
     "getLogButtonName": "获取日志"
   },
   "pageFirmware":{
+    "hmcode": "hmcode( 无后缀文件 )",
+    "srom": "srom( 无后缀文件 )",
+    "3m_bios": "3m_bios( 无后缀文件 )",
+    "8m_bios": "8m_bios( 无后缀文件 )",
+    "bmc_image": "bmc( tar包文件 )",
     "firmwareVersionGetAttention": "注意: 主机镜像版本号需要在BIOS启动之后才能获取",
     "firmwareVersionGet": "获取固件版本号",
     "cardActionSwitchToRunning":"切换到运行",

@@ -361,6 +361,11 @@
     "getLogButtonName": "getlog"
   },
   "pageFirmware": {
+    "hmcode": "hmcode(need no suffix)",
+    "srom": "srom(need no suffix)",
+    "3m_bios": "3m_bios(need no suffix)",
+    "8m_bios": "8m_bios(need no suffix)",
+    "bmc_image": "bmc(need tar)",
     "firmwareVersionGetAttention": "Attention: The host image version number needs to be obtained after the BIOS is started",
     "firmwareVersionGet": "get Firmware Version",
     "cardActionSwitchToRunning": "Switch to running",

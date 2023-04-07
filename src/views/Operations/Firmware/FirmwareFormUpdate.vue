@@ -56,6 +56,23 @@
             </b-form-invalid-feedback>
           </b-form-group>
         </template>
+        <b-form-radio-group v-model="firmwareContent" stacked>
+          <b-form-radio class="mb-1" value="hmcode">
+            {{ $t('pageFirmware.hmcode') }}
+          </b-form-radio>
+          <b-form-radio class="mb-1" value="srom">
+            {{ $t('pageFirmware.srom') }}
+          </b-form-radio>
+          <b-form-radio class="mb-1" value="3m_bios">
+            {{ $t('pageFirmware.3m_bios') }}
+          </b-form-radio>
+          <b-form-radio class="mb-1" value="8m_bios">
+            {{ $t('pageFirmware.8m_bios') }}
+          </b-form-radio>
+          <b-form-radio class="mb-3" value="bmc_image">
+            {{ $t('pageFirmware.bmc_image') }}
+          </b-form-radio>
+        </b-form-radio-group>
         <b-btn
           data-test-id="firmware-button-startUpdate"
           type="submit"
@@ -99,6 +116,7 @@ export default {
   data() {
     return {
       loading,
+      firmwareContent: '8m_bios',
       isWorkstationSelected: true,
       file: null,
       tftpFileAddress: null,
@@ -156,11 +174,20 @@ export default {
       }
     },
     dispatchWorkstationUpload(timerId) {
-      this.$store.dispatch('firmware/uploadFirmware', this.file).catch(() => {
-        this.endLoader();
-        // this.errorToast(message);
-        clearTimeout(timerId);
-      });
+      if (this.firmwareContent == 'bmc_image') {
+        this.$store.dispatch('firmware/uploadFirmware', this.file).catch(() => {
+          this.endLoader();
+          // this.errorToast(message);
+          clearTimeout(timerId);
+        });
+      } else {
+        this.$store
+          .dispatch('firmware/uploadFile', {
+            file: this.file,
+            firmwareContent: this.firmwareContent,
+          })
+          .then((message) => this.infoToast(message, 'update result'));
+      }
     },
     dispatchTftpUpload(timerId) {
       this.$store

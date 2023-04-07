@@ -162,6 +162,18 @@ const FirmwareStore = {
           throw new Error(i18n.t('pageFirmware.toast.errorUpdateFirmware'));
         });
     },
+    async uploadFile(context, data) {
+      return await api
+        .post('/redfish/v1/UploadFile/' + data.firmwareContent, data.file, {
+          headers: { 'Content-Type': 'application/octet-stream' },
+        })
+        .then(({ data }) => {
+          return data.message;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
     async uploadFirmwareTFTP({ state, dispatch }, fileAddress) {
       const data = {
         TransferProtocol: 'TFTP',
