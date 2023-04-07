@@ -141,6 +141,13 @@ export default {
     LoadingBar,
   },
   mixins: [BVToastMixin],
+  beforeRouteLeave(to, from, next) {
+    // Hide loader if the user navigates to another page
+    // before request is fulfilled.
+    clearInterval(this.timer);
+    this.hideLoader();
+    next();
+  },
   props: {
     routerKey: {
       type: Number,
@@ -219,6 +226,10 @@ export default {
     this.$store.dispatch('authentication/resetStoreState');
     this.getSystemInfo();
     this.getEvents();
+    // 今后绝大部分需要自动刷新的数据都可以添加在这个位置, 频繁刷新的
+    setInterval(() => {
+      this.$store.dispatch('global/getPowerState'); //开关机状态
+    }, 5000);
   },
   mounted() {
     this.$root.$on(
