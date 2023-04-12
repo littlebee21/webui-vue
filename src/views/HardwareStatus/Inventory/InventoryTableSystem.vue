@@ -29,7 +29,7 @@
         {{ value }}
       </template>
 
-      <template #cell(locationIndicatorActive)="{ item }">
+      <!-- <template #cell(locationIndicatorActive)="{ item }">
         <b-form-checkbox
           id="identifyLedSwitchSystem"
           v-model="item.locationIndicatorActive"
@@ -42,7 +42,7 @@
           </span>
           <span v-else>{{ $t('global.status.off') }}</span>
         </b-form-checkbox>
-      </template>
+      </template> -->
 
       <template #row-details="{ item }">
         <b-container fluid>
