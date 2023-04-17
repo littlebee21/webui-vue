@@ -246,6 +246,8 @@
     "viewMore":"查看更多"
   },
   "pageNetwork": {
+    "IPusedRemoving": "你无法删除正在使用的IP",
+    "cantDeleteLast": "无法删除最后一个IP",
     "dhcp":" DHCP",
     "domainName":"域名",
     "dns":" DNS服务器",

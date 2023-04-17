@@ -147,6 +147,46 @@ export default {
       }
     },
     deleteIpv4TableRow(index) {
+      if (this.form.ipv4TableItems.length <= 1) {
+        this.errorToast(this.$t('pageNetwork.cantDeleteLast'));
+        return;
+      }
+      // 判断当前操作的地址是当前正在使用的地址
+      if (
+        window.location.host.includes(this.form.ipv4TableItems[index].Address)
+      ) {
+        this.errorToast(this.$t('pageNetwork.IPusedRemoving'));
+        return;
+      }
+      if (this.form.ipv4TableItems.length == 2) {
+        this.form.ipv4TableItems.splice(index, 1);
+        const newIpv4Array = this.form.ipv4TableItems.map((ipv4) => {
+          const { Address, SubnetMask, Gateway } = ipv4;
+          return {
+            Address,
+            SubnetMask,
+            Gateway,
+          };
+        });
+        this.$store
+          .dispatch('network/editIpv4Address', newIpv4Array)
+          .then(() =>
+            this.errorToast(
+              this.$t('pageNetwork.toast.errorSaveNetworkSettings', {
+                setting: this.$t('pageNetwork.ipv4'),
+              })
+            )
+          )
+          .catch(() =>
+            this.successToast(
+              this.$t('pageNetwork.toast.successSaveNetworkSettings', {
+                setting: this.$t('pageNetwork.ipv4'),
+              })
+            )
+          );
+        return;
+      }
+
       this.form.ipv4TableItems.splice(index, 1);
       const newIpv4Array = this.form.ipv4TableItems.map((ipv4) => {
         const { Address, SubnetMask, Gateway } = ipv4;

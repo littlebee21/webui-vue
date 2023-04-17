@@ -815,6 +815,8 @@
     }
   },
   "pageNetwork": {
+    "IPusedRemoving": "You cannot delete an IP that is currently in use",
+    "cantDeleteLast": "Unable to delete the last IP",
     "dhcp": "DHCP",
     "domainName": "domain name",
     "dns": "DNS server",
