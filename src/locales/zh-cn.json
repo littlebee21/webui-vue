@@ -873,6 +873,7 @@
       "ManualControlTitle": "手动控制"
   },
   "pageSensors": {
+    "powerConsumptionHistory": "历史功率统计 (3分钟 时间间隔)",
     "exportFilePrefix": "传感器_",
     "searchForSensors": "搜索传感器",
     "table": {

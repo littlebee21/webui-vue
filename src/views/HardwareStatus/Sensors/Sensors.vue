@@ -1,6 +1,7 @@
 <template>
   <b-container fluid="xl">
     <page-title />
+    <power-consumption />
     <b-row class="align-items-end">
       <b-col sm="6" md="5" xl="4">
         <search
@@ -108,6 +109,7 @@ import TableFilter from '@/components/Global/TableFilter';
 import TableToolbar from '@/components/Global/TableToolbar';
 import TableToolbarExport from '@/components/Global/TableToolbarExport';
 import TableCellCount from '@/components/Global/TableCellCount';
+import PowerConsumption from './PowerConsumption.vue';
 
 import BVTableSelectableMixin, {
   selectedRows,
@@ -131,6 +133,7 @@ export default {
     TableCellCount,
     TableFilter,
     TableToolbar,
+    PowerConsumption,
     TableToolbarExport,
   },
   mixins: [
@@ -143,6 +146,7 @@ export default {
   ],
   beforeRouteLeave(to, from, next) {
     clearInterval(this.timer);
+    clearInterval(this.timerHistory);
     this.hideLoader();
     next();
   },
@@ -223,13 +227,21 @@ export default {
   },
   created() {
     this.startLoader();
-    this.timer = setInterval(() => {
-      this.$store.dispatch('sensors/oldGetEnumSensors');
-    }, 3000);
     this.$store.dispatch('sensors/oldGetEnumSensors').finally(() => {
       this.endLoader();
       this.isBusy = false;
     });
+    this.$store.dispatch('sensors/GetHistorySensors');
+
+    this.timer = setInterval(() => {
+      this.$store.dispatch('sensors/oldGetEnumSensors').finally(() => {
+        this.endLoader();
+        this.isBusy = false;
+      });
+    }, 3000);
+    this.timerHistory = setInterval(() => {
+      this.$store.dispatch('sensors/GetHistorySensors');
+    }, 180000);
   },
   methods: {
     sortCompare(a, b, key) {

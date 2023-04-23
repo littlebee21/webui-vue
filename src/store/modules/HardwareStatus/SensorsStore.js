@@ -22,16 +22,49 @@ const SensorsStore = {
   namespaced: true,
   state: {
     sensors: [],
+    HistorySensors: [],
   },
   getters: {
     sensors: (state) => state.sensors,
+    HistorySensors: (state) => state.HistorySensors,
   },
   mutations: {
     setSensors: (state, sensors) => {
       state.sensors = sensors;
     },
+    setHistorySensors: (state, HistorySensors) => {
+      state.HistorySensors = HistorySensors;
+    },
   },
   actions: {
+    async GetHistorySensors({ commit }) {
+      return await api
+        .get('/redfish/v1/powerConsumption/')
+        .then(({ data }) => {
+          const time = [];
+          const Total_power1 = [];
+          const Total_power2 = [];
+          const HistorySensors = {};
+          Object.keys(data).forEach((key) => {
+            time.push(key);
+            Total_power1.push(
+              data[key]['data'][
+                '/xyz/openbmc_project/sensors/power/Total_power1'
+              ].Value
+            );
+            Total_power2.push(
+              data[key]['data'][
+                '/xyz/openbmc_project/sensors/power/Total_power2'
+              ].Value
+            );
+          });
+          HistorySensors.time = time;
+          HistorySensors.Total_power1 = Total_power1;
+          HistorySensors.Total_power2 = Total_power2;
+          commit('setHistorySensors', HistorySensors);
+        })
+        .catch((error) => console.log(error));
+    },
     async oldGetEnumSensors({ commit }) {
       return await api
         .get('/xyz/openbmc_project/sensors/enumerate')

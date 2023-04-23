@@ -966,6 +966,7 @@
     "serverPowCapSetting": "Server power cap setting"
   },
   "pageSensors": {
+    "powerConsumptionHistory": "Power Consumption History(3min interval)",
     "exportFilePrefix": "sensors_",
     "searchForSensors": "Search for sensors",
     "table": {

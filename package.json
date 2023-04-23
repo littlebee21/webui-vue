@@ -26,6 +26,8 @@
     "js-cookie": "2.2.1",
     "lodash": "4.17.21",
     "vue": "2.6.12",
+    "vue-echarts": "^5.0.0-beta.0",
+    "echarts": "4.9.0",
     "vue-i18n": "8.24.2",
     "vue-router": "3.5.1",
     "vuelidate": "0.7.6",

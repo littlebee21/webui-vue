@@ -42,6 +42,14 @@ import Vuelidate from 'vuelidate';
 import i18n from './i18n';
 import { format } from 'date-fns-tz';
 
+//引入echarts
+import 'echarts';
+//引入vue-echarts
+import VueEcharts from 'vue-echarts';
+
+//注册为全局组件
+Vue.component('VChart', VueEcharts);
+
 // Filters
 Vue.filter('shortTimeZone', function (value) {
   const longTZ = value
