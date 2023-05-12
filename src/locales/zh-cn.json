@@ -109,6 +109,7 @@
     "operations": "控制",
     "dateTimeSettings": "@:appPageTitle.dateTimeSettings",
     "eventLogs": "@:appPageTitle.eventLogs",
+    "auditLogs": "@:appPageTitle.auditLogs",
     "firmware": "@:appPageTitle.firmware",
     "hardwareStatus": "@:appPageTitle.hardwareStatus",
     "health": "健康",
@@ -154,6 +155,7 @@
     "userManagement": "用户管理",
     "dateTimeSettings": "日期和时间设置",
     "eventLogs": "事件日志",
+    "auditLogs": "审计日志",
     "policies": "策略",
     "certificates": "证书",
     "keyClear": "清除敏感数据",
@@ -346,6 +348,8 @@
       "id": "ID",
       "searchLogs": "搜索日志",
       "severity": "严重性",
+      "username": "用户名",
+      "ip": "IP",
       "type": "类型"
     },
     "toast": {

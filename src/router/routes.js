@@ -3,6 +3,7 @@ import ChangePassword from '@/views/ChangePassword';
 import ConsoleLayout from '@/layouts/ConsoleLayout.vue';
 import DateTime from '@/views/Settings/DateTime';
 import EventLogs from '@/views/Logs/EventLogs';
+import AuditLogs from '@/views/Logs/AuditLogs';
 import FactoryReset from '@/views/Operations/FactoryReset';
 import Firmware from '@/views/Operations/Firmware';
 import Inventory from '@/views/HardwareStatus/Inventory';
@@ -114,6 +115,14 @@ const routes = [
         component: EventLogs,
         meta: {
           title: i18n.t('appPageTitle.eventLogs'),
+        },
+      },
+      {
+        path: '/logs/audit-logs',
+        name: 'audit-logs',
+        component: AuditLogs,
+        meta: {
+          title: i18n.t('appPageTitle.auditLogs'),
         },
       },
       {
