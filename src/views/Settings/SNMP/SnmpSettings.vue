@@ -8,6 +8,25 @@
         </dd>
       </b-row>
     </page-section>
+    <b-row>
+      <b-col md="3">
+        <dl>
+          <dt>SNMP function switch</dt>
+          <dd>
+            <b-form-checkbox
+              v-model="snmpOpen"
+              switch
+              @change="changeSNMPState"
+            >
+              <span v-if="snmpOpen">
+                {{ $t('global.status.enabled') }}
+              </span>
+              <span v-else>{{ $t('global.status.disabled') }}</span>
+            </b-form-checkbox>
+          </dd>
+        </dl>
+      </b-col>
+    </b-row>
     <page-section :section-title="$t('pageSnmpSettings.administrators')">
       <template v-for="item in adminData">
         <b-row :key="item.id">
@@ -65,12 +84,30 @@ export default {
   data() {
     return {
       adminData: this.$store.getters['snmpSetting/snmpStatus'],
+      snmpOpen: this.$store.getters['snmpSetting/SNMPSwitch'],
     };
   },
   created() {
     this.abort();
+    this.$store
+      .dispatch('snmpSetting/getSNMPSwitchStatus')
+      .then(
+        () => (this.snmpOpen = this.$store.getters['snmpSetting/SNMPSwitch'])
+      );
   },
   methods: {
+    changeSNMPState() {
+      if (this.snmpOpen == true) {
+        this.$store.dispatch('snmpSetting/postChangeSNMPSwitch', 'enable');
+      } else {
+        this.$store.dispatch('snmpSetting/postChangeSNMPSwitch', 'disable');
+      }
+      this.$store
+        .dispatch('snmpSetting/getSNMPSwitchStatus')
+        .then(
+          () => (this.snmpOpen = this.$store.getters['snmpSetting/SNMPSwitch'])
+        );
+    },
     // add input
     addAdminCount() {
       this.adminData.push({ routerId: '', ip: '', port: '' });

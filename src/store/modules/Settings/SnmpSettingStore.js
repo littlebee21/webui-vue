@@ -5,12 +5,17 @@ const SnmpSettingStore = {
   state: {
     snmpStatus: [],
     snmpStatusCount: 0,
+    SNMPSwitch: false,
   },
   getters: {
     snmpStatus: (state) => state.snmpStatus,
     snmpStatusCount: (state) => state.snmpStatusCount,
+    SNMPSwitch: (state) => state.SNMPSwitch,
   },
   mutations: {
+    setSNMPSwitch(state, SNMPSwitch) {
+      state.SNMPSwitch = SNMPSwitch;
+    },
     setsnmpStatus(state, snmpStatus) {
       state.snmpStatus = snmpStatus;
     },
@@ -19,6 +24,28 @@ const SnmpSettingStore = {
     },
   },
   actions: {
+    postChangeSNMPSwitch(context, switchStatus) {
+      return api
+        .post(`/redfish/v1/Managers/network/snmp_switch`, {
+          data: switchStatus,
+        })
+        .catch((error) => console.log(error))
+        .finally();
+    },
+    // get snmp Switch status
+    getSNMPSwitchStatus({ commit }) {
+      return api
+        .get(`/redfish/v1/Managers/network/snmp_switch`)
+        .then(({ data: { data } }) => {
+          if (data == 'enable') {
+            commit('setSNMPSwitch', true);
+          } else {
+            commit('setSNMPSwitch', false);
+          }
+        })
+        .catch((error) => console.log(error))
+        .finally();
+    },
     //get all snmp status
     async getSnmpStatus({ state, commit }) {
       var count = 0;
