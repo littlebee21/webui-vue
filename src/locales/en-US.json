@@ -983,6 +983,8 @@
     "alert": {
       "disconnectedAlertMessage" : "System must be powered on to connect"
     },
+    "pannel1": "pannel_1: ",
+    "pannel2": "pannel_2: ",
     "connected": "Connected",
     "disconnected": "Disconnected",
     "openNewTab": "Open in new tab",

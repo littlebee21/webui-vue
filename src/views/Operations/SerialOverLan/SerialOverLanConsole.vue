@@ -33,7 +33,18 @@
         </b-button>
       </b-col> -->
     </b-row>
+    <dl class="mb-2" sm="6" md="6">
+      <dt class="d-inline font-weight-bold mr-1">
+        {{ $t('pageSerialOverLan.pannel1') }}:
+      </dt>
+    </dl>
     <div id="terminal" ref="panel"></div>
+    <dl class="mb-2" sm="6" md="6">
+      <dt class="d-inline font-weight-bold mr-1">
+        {{ $t('pageSerialOverLan.pannel2') }}:
+      </dt>
+    </dl>
+    <div id="terminal" ref="panel1"></div>
   </div>
 </template>
 
@@ -82,6 +93,7 @@ export default {
   },
   mounted() {
     this.openTerminal();
+    this.openTerminal1();
   },
   beforeDestroy() {
     window.removeEventListener('resize', this.resizeConsoleWindow);
@@ -140,12 +152,69 @@ export default {
         console.log(error);
       }
     },
+    openTerminal1() {
+      const token = this.$store.getters['authentication/token'];
+
+      this.ws1 = new WebSocket(`wss://${window.location.host}/console1`, [
+        token,
+      ]);
+
+      // Refer https://github.com/xtermjs/xterm.js/ for xterm implementation and addons.
+
+      this.term1 = new Terminal({
+        fontSize: 15,
+        fontFamily:
+          'SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
+      });
+
+      const attachAddon = new AttachAddon(this.ws1);
+      this.term1.loadAddon(attachAddon);
+
+      const fitAddon = new FitAddon();
+      this.term1.loadAddon(fitAddon);
+
+      const SOL_THEME = {
+        background: '#19273c',
+        cursor: 'rgba(83, 146, 255, .5)',
+        scrollbar: 'rgba(83, 146, 255, .5)',
+      };
+      this.term1.setOption('theme', SOL_THEME);
+
+      this.term1.open(this.$refs.panel1);
+      fitAddon.fit();
+
+      this.resizeConsoleWindow = throttle(() => {
+        fitAddon.fit();
+      }, 1000);
+      window.addEventListener('resize', this.resizeConsoleWindow);
+
+      try {
+        this.ws1.onopen = function () {
+          console.log('websocket console1/ opened');
+        };
+        this.ws1.onclose = function (event) {
+          console.log(
+            'websocket console1/ closed. code: ' +
+              event.code +
+              ' reason: ' +
+              event.reason
+          );
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    },
     closeTerminal() {
       console.log('closeTerminal');
       this.term.dispose();
       this.term = null;
       this.ws.close();
       this.ws = null;
+
+      this.term1.dispose();
+      this.term1 = null;
+      this.ws1.close();
+      this.ws1 = null;
     },
     openConsoleWindow() {
       window.open(

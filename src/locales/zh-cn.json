@@ -898,6 +898,8 @@
     "Information":"激活码密钥:"
   },
   "pageSerialOverLan": {
+    "pannel1": "面板1: ",
+    "pannel2": "面板2: ",
     "connected": "连接的",
     "disconnected": "断开连接",
     "openNewTab": "在新标签中打开",
