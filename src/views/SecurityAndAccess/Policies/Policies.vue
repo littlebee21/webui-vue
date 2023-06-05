@@ -30,6 +30,29 @@
         </b-row>
         <b-row class="setting-section">
           <b-col class="d-flex align-items-center justify-content-between">
+            <dl class="mr-3 w-75">
+              <dt>{{ $t('pagePolicies.snmp') }}</dt>
+              <dd>
+                {{ $t('pagePolicies.snmpDescription') }}
+              </dd>
+            </dl>
+            <b-form-checkbox
+              v-model="snmpOpen"
+              switch
+              @change="changeSNMPState"
+            >
+              <span class="sr-only">
+                {{ $t('pagePolicies.snmp') }}
+              </span>
+              <span v-if="snmpOpen">
+                {{ $t('global.status.enabled') }}
+              </span>
+              <span v-else>{{ $t('global.status.disabled') }}</span>
+            </b-form-checkbox>
+          </b-col>
+        </b-row>
+        <b-row class="setting-section">
+          <b-col class="d-flex align-items-center justify-content-between">
             <dl class="mt-3 mr-3 w-75">
               <dt>{{ $t('pagePolicies.ipmi') }}</dt>
               <dd>
@@ -124,6 +147,7 @@ export default {
   },
   data() {
     return {
+      snmpOpen: this.$store.getters['snmpSetting/SNMPSwitch'],
       modifySSHPolicyDisabled:
         process.env.VUE_APP_MODIFY_SSH_POLICY_DISABLED === 'true',
     };
@@ -172,12 +196,29 @@ export default {
   },
   created() {
     this.startLoader();
+    this.$store
+      .dispatch('snmpSetting/getSNMPSwitchStatus')
+      .then(
+        () => (this.snmpOpen = this.$store.getters['snmpSetting/SNMPSwitch'])
+      );
     Promise.all([
       this.$store.dispatch('policies/getBiosStatus'),
       this.$store.dispatch('policies/getNetworkProtocolStatus'),
     ]).finally(() => this.endLoader());
   },
   methods: {
+    changeSNMPState() {
+      if (this.snmpOpen == true) {
+        this.$store.dispatch('snmpSetting/postChangeSNMPSwitch', 'enable');
+      } else {
+        this.$store.dispatch('snmpSetting/postChangeSNMPSwitch', 'disable');
+      }
+      this.$store
+        .dispatch('snmpSetting/getSNMPSwitchStatus')
+        .then(
+          () => (this.snmpOpen = this.$store.getters['snmpSetting/SNMPSwitch'])
+        );
+    },
     changeIpmiProtocolState(state) {
       this.$store
         .dispatch('policies/saveIpmiProtocolState', state)

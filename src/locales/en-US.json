@@ -924,7 +924,9 @@
     "rtad": "RTAD",
     "rtadDescription": "This option enables or disables the Remote Trusted Attestation Daemon for host firmware",
     "ssh": "BMC shell (via SSH)",
+    "snmp": "snmp function (via network)",
     "sshDescription": "Allow access to shell sessions via SSH, through port 22 on the BMC.",
+    "snmpDescription": "Allow access to snmp funciton",
     "modal": {
       "disableMessage": {
         "ipmi": "Are you sure you want to disable @:pagePolicies.ipmi?",

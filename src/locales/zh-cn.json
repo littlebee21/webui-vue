@@ -1050,7 +1050,9 @@
     "rtad": "rtad",
     "rtadDescription":"此选项启用或禁用主机固件的远程信任证明守护程序",
     "ssh":" BMC Shell(通过SSH)",
+    "snmp": "snmp 功能 (通过网络)",
     "sshDescription":"允许通过SSH,通过BMC上的端口22访问Shell会话。",
+    "snmpDescription": "允许访问SNMP功能",
     "modal": {
       "disableMessage":{
         "ipmi":"您确定要禁用 @:pagepolicies.ipmi吗?",
