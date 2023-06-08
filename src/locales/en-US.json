@@ -982,6 +982,8 @@
     }
   },
   "pageSerialOverLan": {
+    "downloadOperateSystemSolFile": "download operation system sol data",
+    "downloadBiosSolFile": "download bios sol data",
     "alert": {
       "disconnectedAlertMessage" : "System must be powered on to connect"
     },

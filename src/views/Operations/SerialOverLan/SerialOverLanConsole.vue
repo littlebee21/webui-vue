@@ -37,12 +37,18 @@
       <dt class="d-inline font-weight-bold mr-1">
         {{ $t('pageSerialOverLan.pannel1') }}:
       </dt>
+      <b-link @click="downloadOperateSystemSolFile">
+        {{ $t('pageSerialOverLan.downloadOperateSystemSolFile') }}
+      </b-link>
     </dl>
     <div id="terminal" ref="panel"></div>
     <dl class="mb-2" sm="6" md="6">
       <dt class="d-inline font-weight-bold mr-1">
         {{ $t('pageSerialOverLan.pannel2') }}:
       </dt>
+      <b-link @click="downloadBiosSolFile">
+        {{ $t('pageSerialOverLan.downloadBiosSolFile') }}
+      </b-link>
     </dl>
     <div id="terminal" ref="panel1"></div>
   </div>
@@ -54,6 +60,8 @@ import { AttachAddon } from 'xterm-addon-attach';
 import { FitAddon } from 'xterm-addon-fit';
 import { Terminal } from 'xterm';
 import { throttle } from 'lodash';
+import Axios from 'axios';
+import fileSaver from 'file-saver';
 // import IconLaunch from '@carbon/icons-vue/es/launch/20';
 import StatusIcon from '@/components/Global/StatusIcon';
 
@@ -100,6 +108,36 @@ export default {
     this.closeTerminal();
   },
   methods: {
+    // 下载操作系统的sol打印
+    downloadOperateSystemSolFile() {
+      return Axios({
+        method: 'get',
+        url: '/redfish/v1/downloadfile/systemSolLog',
+        responseType: 'blob',
+      })
+        .then((response) => {
+          const blob = new Blob([response.data]);
+          const url = URL.createObjectURL(blob);
+          fileSaver.saveAs(blob, 'operation-system-sol-log.txt');
+          window.open(url);
+        })
+        .catch((error) => console.log(error));
+    },
+    // 下载bios的sol打印
+    downloadBiosSolFile() {
+      return Axios({
+        method: 'get',
+        url: '/redfish/v1/downloadfile/biosSolLog',
+        responseType: 'blob',
+      })
+        .then((response) => {
+          const blob = new Blob([response.data]);
+          const url = URL.createObjectURL(blob);
+          fileSaver.saveAs(blob, 'bios-sol-log.txt');
+          window.open(url);
+        })
+        .catch((error) => console.log(error));
+    },
     openTerminal() {
       const token = this.$store.getters['authentication/token'];
 

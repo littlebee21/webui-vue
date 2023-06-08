@@ -898,6 +898,8 @@
     "Information":"激活码密钥:"
   },
   "pageSerialOverLan": {
+    "downloadOperateSystemSolFile": "下载操作系统SOL日志",
+    "downloadBiosSolFile": "下载bios的SOL日志",
     "pannel1": "面板1: ",
     "pannel2": "面板2: ",
     "connected": "连接的",
