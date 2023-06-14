@@ -34,6 +34,7 @@ import SnmpSettings from '@/views/Settings/SNMP';
 import Activation from '@/views/SecurityAndAccess/Activation';
 import i18n from '@/i18n';
 import Fan from '@/views/Operations/Fan';
+import Lastscreen from '@/views/Operations/LastScreen';
 
 const routes = [
   {
@@ -217,6 +218,14 @@ const routes = [
         component: KeyClear,
         meta: {
           title: i18n.t('appPageTitle.keyClear'),
+        },
+      },
+      {
+        path: '/operations/lastscreen',
+        name: 'lastscreen',
+        component: Lastscreen,
+        meta: {
+          title: i18n.t('appPageTitle.lastscreen'),
         },
       },
       {

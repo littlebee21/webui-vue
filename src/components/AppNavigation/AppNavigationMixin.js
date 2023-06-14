@@ -76,6 +76,11 @@ const AppNavigationMixin = {
               label: this.$t('appNavigation.kvm'),
               route: '/operations/kvm',
             },
+            {
+              id: 'lastscreen',
+              label: this.$t('appNavigation.lastscreen'),
+              route: '/operations/lastscreen',
+            },
             // {
             //   id: 'key-clear',
             //   label: this.$t('appNavigation.keyClear'),

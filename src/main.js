@@ -41,6 +41,8 @@ import {
 import Vuelidate from 'vuelidate';
 import i18n from './i18n';
 import { format } from 'date-fns-tz';
+import preview from 'vue-photo-preview';
+import 'vue-photo-preview/dist/skin.css';
 
 //引入echarts
 import 'echarts';
@@ -92,6 +94,7 @@ Vue.filter('formatTime', function (value) {
 });
 
 // Plugins
+Vue.use(preview);
 Vue.use(AlertPlugin);
 Vue.use(BadgePlugin);
 Vue.use(ButtonPlugin);
