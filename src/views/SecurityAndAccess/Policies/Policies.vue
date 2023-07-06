@@ -78,6 +78,25 @@
         </b-row>
         <b-row class="setting-section">
           <b-col class="d-flex align-items-center justify-content-between">
+            <dl class="mr-3 w-75">
+              <dt>{{ $t('pagePolicies.vnc') }}</dt>
+              <dd>
+                {{ $t('pagePolicies.vncDescription') }}
+              </dd>
+            </dl>
+            <b-form-checkbox v-model="vncOpen" switch @change="changeVNCState">
+              <span class="sr-only">
+                {{ $t('pagePolicies.vnc') }}
+              </span>
+              <span v-if="vncOpen">
+                {{ $t('global.status.enabled') }}
+              </span>
+              <span v-else>{{ $t('global.status.disabled') }}</span>
+            </b-form-checkbox>
+          </b-col>
+        </b-row>
+        <b-row class="setting-section">
+          <b-col class="d-flex align-items-center justify-content-between">
             <dl class="mt-3 mr-3 w-75">
               <dt>{{ $t('pagePolicies.vtpm') }}</dt>
               <dd>
@@ -148,6 +167,7 @@ export default {
   data() {
     return {
       snmpOpen: this.$store.getters['snmpSetting/SNMPSwitch'],
+      vncOpen: this.$store.getters['vncSetting/VncSwitch'],
       modifySSHPolicyDisabled:
         process.env.VUE_APP_MODIFY_SSH_POLICY_DISABLED === 'true',
     };
@@ -201,6 +221,9 @@ export default {
       .then(
         () => (this.snmpOpen = this.$store.getters['snmpSetting/SNMPSwitch'])
       );
+    this.$store
+      .dispatch('vncSetting/getVncSwitchStatus')
+      .then(() => (this.vncOpen = this.$store.getters['vncSetting/VncSwitch']));
     Promise.all([
       this.$store.dispatch('policies/getBiosStatus'),
       this.$store.dispatch('policies/getNetworkProtocolStatus'),
@@ -217,6 +240,18 @@ export default {
         .dispatch('snmpSetting/getSNMPSwitchStatus')
         .then(
           () => (this.snmpOpen = this.$store.getters['snmpSetting/SNMPSwitch'])
+        );
+    },
+    changeVNCState() {
+      if (this.vncOpen == true) {
+        this.$store.dispatch('vncSetting/postChangeVncSwitch', 'enable');
+      } else {
+        this.$store.dispatch('vncSetting/postChangeVncSwitch', 'disable');
+      }
+      this.$store
+        .dispatch('vncSetting/getVncSwitchStatus')
+        .then(
+          () => (this.vncOpen = this.$store.getters['vncSetting/VncSwitch'])
         );
     },
     changeIpmiProtocolState(state) {

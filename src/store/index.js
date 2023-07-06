@@ -35,6 +35,7 @@ import VirtualMediaStore from './modules/Operations/VirtualMediaStore';
 import FanControlStore from './modules/Operations/FanControlStore';
 import IPManagementStore from './modules/SecurityAndAccess/IPManagementStore';
 import SnmpSettingStore from './modules/Settings/SnmpSettingStore';
+import VncSettingStore from './modules/Settings/VncSettingStore';
 import activationStore from './modules/SecurityAndAccess/activationStore';
 
 Vue.use(Vuex);
@@ -76,6 +77,7 @@ export default new Vuex.Store({
     keyClear: KeyClearStore,
     fanControl: FanControlStore,
     snmpSetting: SnmpSettingStore,
+    vncSetting: VncSettingStore,
     activation: activationStore,
   },
   plugins: [WebSocketPlugin],
