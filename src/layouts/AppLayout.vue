@@ -8,7 +8,10 @@
     />
     <app-navigation class="app-navigation" />
     <page-container class="app-content">
-      <router-view ref="routerView" :key="routerKey" />
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
       <!-- Scroll to top button -->
       <button-back-to-top />
     </page-container>

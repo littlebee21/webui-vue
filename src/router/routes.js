@@ -298,6 +298,7 @@ const routes = [
         component: SerialOverLan,
         meta: {
           title: i18n.t('appPageTitle.serialOverLan'),
+          keepAlive: true,
         },
       },
       {
@@ -314,6 +315,7 @@ const routes = [
         component: VirtualMedia,
         meta: {
           title: i18n.t('appPageTitle.virtualMedia'),
+          keepAlive: true,
         },
       },
       {
