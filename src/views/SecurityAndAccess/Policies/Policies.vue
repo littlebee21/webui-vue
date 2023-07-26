@@ -95,56 +95,6 @@
             </b-form-checkbox>
           </b-col>
         </b-row>
-        <b-row class="setting-section">
-          <b-col class="d-flex align-items-center justify-content-between">
-            <dl class="mt-3 mr-3 w-75">
-              <dt>{{ $t('pagePolicies.vtpm') }}</dt>
-              <dd>
-                {{ $t('pagePolicies.vtpmDescription') }}
-              </dd>
-            </dl>
-            <b-form-checkbox
-              id="vtpmSwitch"
-              v-model="vtpmState"
-              data-test-id="policies-toggle-vtpm"
-              switch
-              @change="changeVtpmState"
-            >
-              <span class="sr-only">
-                {{ $t('pagePolicies.vtpm') }}
-              </span>
-              <span v-if="vtpmState">
-                {{ $t('global.status.enabled') }}
-              </span>
-              <span v-else>{{ $t('global.status.disabled') }}</span>
-            </b-form-checkbox>
-          </b-col>
-        </b-row>
-        <b-row class="setting-section">
-          <b-col class="d-flex align-items-center justify-content-between">
-            <dl class="mt-3 mr-3 w-75">
-              <dt>{{ $t('pagePolicies.rtad') }}</dt>
-              <dd>
-                {{ $t('pagePolicies.rtadDescription') }}
-              </dd>
-            </dl>
-            <b-form-checkbox
-              id="rtadSwitch"
-              v-model="rtadState"
-              data-test-id="policies-toggle-rtad"
-              switch
-              @change="changeRtadState"
-            >
-              <span class="sr-only">
-                {{ $t('pagePolicies.rtad') }}
-              </span>
-              <span v-if="rtadState">
-                {{ $t('global.status.enabled') }}
-              </span>
-              <span v-else>{{ $t('global.status.disabled') }}</span>
-            </b-form-checkbox>
-          </b-col>
-        </b-row>
       </b-col>
     </b-row>
   </b-container>
