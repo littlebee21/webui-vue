@@ -8,14 +8,14 @@
         <dl>
           <dt>{{ $t('pageOverview.runningVersion') }}</dt>
           <dd>{{ dataFormatter(runningVersion) }}</dd>
-          <dt>{{ $t('pageOverview.backupVersion') }}</dt>
-          <dd>{{ dataFormatter(backupVersion) }}</dd>
+          <!-- <dt>{{ $t('pageOverview.backupVersion') }}</dt> -->
+          <!-- <dd>{{ dataFormatter(backupVersion) }}</dd> -->
         </dl>
       </b-col>
       <b-col sm="6">
         <dl>
-          <dt>{{ $t('pageOverview.firmwareVersion') }}</dt>
-          <dd>{{ dataFormatter(firmwareVersion) }}</dd>
+          <!-- <dt>{{ $t('pageOverview.firmwareVersion') }}</dt> -->
+          <!-- <dd>{{ dataFormatter(firmwareVersion) }}</dd> -->
         </dl>
       </b-col>
     </b-row>
