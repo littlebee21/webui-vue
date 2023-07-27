@@ -15,18 +15,6 @@ const getHealthStatus = (events, loadedEvents) => {
   return status;
 };
 
-// process log message format
-function MessageProcess(Message, content) {
-  // replace thing in brackets
-  var MessageResult = Message.replace(/\(.*\)/g, '');
-  MessageResult = MessageResult.replace(/\[.*\]/g, '');
-  MessageResult = MessageResult.replace(/AUDIT_MANUAL/g, '');
-  MessageResult = MessageResult.replace(/SYSTEM_MANUAL/g, '');
-  MessageResult = content + ' ' + MessageResult;
-  console.log(MessageResult);
-  return MessageResult;
-}
-
 // TODO: High priority events should also check if Log
 // is resolved when the property is available in Redfish
 const getHighPriorityEvents = (events) =>
@@ -37,11 +25,9 @@ const EventLogStore = {
   state: {
     allEvents: [],
     loadedEvents: false,
-    allEventsNumber: '',
   },
   getters: {
     allEvents: (state) => state.allEvents,
-    allEventsNumber: (state) => state.allEventsNumber,
     highPriorityEvents: (state) => getHighPriorityEvents(state.allEvents),
     healthStatus: (state) =>
       getHealthStatus(state.allEvents, state.loadedEvents),
@@ -50,68 +36,9 @@ const EventLogStore = {
     setAllEvents: (state, allEvents) => (
       (state.allEvents = allEvents), (state.loadedEvents = true)
     ),
-    setAllEventsNumber: (state, allEventsNumber) => {
-      state.allEventsNumber = allEventsNumber;
-    },
-    appendEvents: (state, Events) => {
-      state.allEvents = state.allEvents.concat(Events);
-      state.loadedEvents = true;
-    },
   },
   actions: {
-    //redfish/v1/Managers/bmc/LogServices/Search/Entries/<str>/
-    async getAndAppendMyEventLogData({ commit }, content) {
-      return await api
-        .get(
-          '/redfish/v1/Systems/system/LogServices/rsyslog/EventLog/Entries/' +
-            content +
-            '/'
-        )
-        .then(({ data: { Members = [] } = {} }) => {
-          var index = 0;
-          const eventLogs = Members.map((log) => {
-            index += 1;
-            const {
-              // Id,
-              Severity,
-              Created,
-              EntryType,
-              Message,
-              Name,
-              times,
-              Modified,
-              Resolved,
-              AdditionalDataURI,
-            } = log;
-            return {
-              id: index,
-              severity: Severity,
-              date: new Date(Created),
-              type: EntryType,
-              description: MessageProcess(Message, content),
-              name: Name,
-              modifiedDate: new Date(Modified),
-              times: times,
-              uri: log['@odata.id'],
-              filterByStatus: Resolved ? 'Resolved' : 'Unresolved',
-              status: Resolved, //true or false
-              additionalDataUri: AdditionalDataURI,
-            };
-          });
-          if (eventLogs == {}) {
-            console.log('eventLog is empty, error');
-          }
-          console.log('eventlog is not emmpty', eventLogs);
-          commit('setAllEvents', eventLogs);
-        })
-        .catch((error) => {
-          console.log('get and Append Event Log Data error:', error);
-        });
-    },
-    async getEventLogData({ dispatch }) {
-      await dispatch('getAndAppendMyEventLogData', 'system');
-    },
-    async getEventLogData_back({ commit }) {
+    async getEventLogData({ commit }) {
       return await api
         .get('/redfish/v1/Systems/system/LogServices/EventLog/Entries')
         .then(({ data: { Members = [] } = {} }) => {
@@ -161,28 +88,7 @@ const EventLogStore = {
           );
         });
     },
-    // rewrite a new delete
-    // description is log content
-    async deleteEventLogs({ dispatch }, description) {
-      const data = {};
-      data.description = description;
-      return await api
-        .post(
-          `/redfish/v1/Systems/system/LogServices/rsyslog/EventLog/Entries/system/delete`,
-          data
-        )
-        .then((response) => {
-          dispatch('getAndAppendMyEventLogData', 'system');
-          return response;
-        })
-        .catch((error) => {
-          console.log(error);
-          const message = 'log delete fail';
-          throw new Error(message);
-        });
-    },
-    // old the openbmc used
-    async olddeleteEventLogs({ dispatch }, uris = []) {
+    async deleteEventLogs({ dispatch }, uris = []) {
       const promises = uris.map((uri) =>
         api.delete(uri).catch((error) => {
           console.log(error);
