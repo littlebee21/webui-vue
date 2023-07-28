@@ -44,6 +44,7 @@ const SensorsStore = {
           const time = [];
           const Total_power1 = [];
           const Total_power2 = [];
+          const Total_power_sum = [];
           const HistorySensors = {};
           Object.keys(data).forEach((key) => {
             time.push(key);
@@ -57,10 +58,19 @@ const SensorsStore = {
                 '/xyz/openbmc_project/sensors/power/Total_power2'
               ].Value
             );
+            Total_power_sum.push(
+              data[key]['data'][
+                '/xyz/openbmc_project/sensors/power/Total_power2'
+              ].Value +
+                data[key]['data'][
+                  '/xyz/openbmc_project/sensors/power/Total_power1'
+                ].Value
+            );
           });
           HistorySensors.time = time;
           HistorySensors.Total_power1 = Total_power1;
           HistorySensors.Total_power2 = Total_power2;
+          HistorySensors.Total_power_sum = Total_power_sum;
           commit('setHistorySensors', HistorySensors);
         })
         .catch((error) => console.log(error));

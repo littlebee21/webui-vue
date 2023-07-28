@@ -30,7 +30,7 @@ export default {
           },
         },
         legend: {
-          data: ['Total_power2', 'Total_power1'],
+          data: ['Total_power2', 'Total_power1', 'Total_power_sum'],
         },
         toolbox: {
           feature: {
@@ -67,6 +67,12 @@ export default {
             type: 'line',
             color: '#ee6ea5',
             data: this.HistorySensors.Total_power1,
+          },
+          {
+            name: 'Total_power_sum',
+            type: 'line',
+            color: '#00b526',
+            data: this.HistorySensors.Total_power_sum,
           },
         ],
       };
