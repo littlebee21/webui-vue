@@ -155,11 +155,6 @@ export default {
       isBusy: true,
       fields: [
         {
-          key: 'checkbox',
-          sortable: false,
-          label: '',
-        },
-        {
           key: 'name',
           sortable: true,
           label: this.$t('pageSensors.table.name'),
