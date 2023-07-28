@@ -310,7 +310,7 @@ export default {
     this.setNtpValues();
     this.timer = setInterval(() => {
       this.$store.dispatch('global/getBmcTime'); //BMC的时间
-    }, 60000);
+    }, 5000);
     Promise.all([
       this.$store.dispatch('global/getBmcTime'),
       this.$store.dispatch('dateTime/getNtpData'),
