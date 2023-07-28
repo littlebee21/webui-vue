@@ -193,6 +193,9 @@
     "newPassword": "新密码",
     "username": "用户名"
   },
+  "lastScreen": {
+    "downloadPic": "下载"
+  },
   "pageDateTime": {
     "alert": {
       "message": "要更改整个应用程序中显示日期和时间(UTC或浏览器偏移量)的方式,请访问",

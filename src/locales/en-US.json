@@ -204,6 +204,9 @@
       "successDelete": "Successfully disconnected %{count} session. | Successfully disconnected %{count} sessions."
     }
   },
+  "lastScreen": {
+    "downloadPic": "download"
+  },
   "pageDateTime": {
     "alert": {
       "message": "To change how date and time are displayed (either UTC or browser offset) throughout the application, visit ",

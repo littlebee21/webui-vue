@@ -7,7 +7,7 @@
           v-for="image in images"
           :key="image.id"
           cols="6"
-          class="mb-3 border"
+          class="mb-3 mt-3 border"
         >
           <img
             :src="image.src"
@@ -16,7 +16,12 @@
             width="100%"
             height="100%"
           />
-          <dt class="font-weight-bold">{{ image.name }}</dt>
+          <dl class="mb-2" sm="6" md="6">
+            <dt class="d-inline font-weight-bold mr-1">{{ image.name }}</dt>
+            <b-link @click="downloadPic(image)">
+              {{ $t('lastScreen.downloadPic') }}
+            </b-link>
+          </dl>
         </b-col>
       </b-row>
     </page-section>
@@ -27,6 +32,7 @@
 import PageTitle from '@/components/Global/PageTitle';
 import PageSection from '@/components/Global/PageSection';
 import Axios from 'axios';
+import fileSaver from 'file-saver';
 
 function blobToBase64(blob, i, callback) {
   var reader = new FileReader();
@@ -50,6 +56,11 @@ export default {
     this.getKVMLastImages();
   },
   methods: {
+    // 下载KVM图片
+    async downloadPic(image) {
+      console.log('image is', image.name);
+      fileSaver.saveAs(image.blobsrc, image.name);
+    },
     // 获取KVM图片名字
     async getKVMLastImagesName() {
       return await Axios({
@@ -88,6 +99,7 @@ export default {
           },
         });
         const blob = new Blob([response.data], { type: 'image/jpeg' });
+        this.images[i].blobsrc = blob;
         blobToBase64(blob, i, (base64, i) => {
           console.log(i);
           this.images[i].src = 'data:image/png;base64,' + base64;
