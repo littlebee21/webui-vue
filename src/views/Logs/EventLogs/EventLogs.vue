@@ -310,6 +310,7 @@ export default {
   beforeRouteLeave(to, from, next) {
     // Hide loader if the user navigates to another page
     // before request is fulfilled.
+    clearInterval(this.timer);
     this.hideLoader();
     next();
   },
@@ -436,10 +437,12 @@ export default {
   },
   created() {
     this.startLoader();
-    this.$store.dispatch('eventLog/getEventLogData').finally(() => {
-      this.endLoader();
-      this.isBusy = false;
-    });
+    this.timer = setInterval(() => {
+      this.$store.dispatch('eventLog/getEventLogData').finally(() => {
+        this.endLoader();
+        this.isBusy = false;
+      });
+    }, 30000);
   },
   methods: {
     changelogStatus(row) {
