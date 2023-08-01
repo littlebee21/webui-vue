@@ -109,6 +109,7 @@ export default {
   },
   created() {
     this.startLoader();
+    this.firmwareVersionGet();
     this.$store
       .dispatch('firmware/getFirmwareInformation')
       .finally(() => this.endLoader());
