@@ -35,6 +35,11 @@ export default {
     IconArrowRight: ArrowRight16,
   },
   mixins: [BVToastMixin],
+  beforeRouteLeave(to, from, next) {
+    clearInterval(this.timer);
+    this.hideLoader();
+    next();
+  },
   computed: {
     bmcTime() {
       return this.$store.getters['global/bmcTime'];
@@ -44,6 +49,9 @@ export default {
     Promise.all([this.$store.dispatch('global/getBmcTime')]).finally(() => {
       this.$root.$emit('overview-quicklinks-complete');
     });
+    this.timer = setInterval(() => {
+      this.$store.dispatch('global/getBmcTime'); //BMC的时间
+    }, 5000);
   },
 };
 </script>
