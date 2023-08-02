@@ -339,6 +339,11 @@
   },
   "pageEventLogs": {
     "exportFilePrefix": "event_logs_",
+    "additionalDataUri": "下载附加的数据",
+    "resolve": "解决",
+    "resolved": "已解决",
+    "unresolve": "未解决",
+    "unresolved": "未解决",
     "modal": {
       "deleteTitle": "删除日志| 删除日志",
       "deleteMessage": "您确定要删除%{count}日志吗？ 此操作无法撤消。 | 您确定要删除%{count}日志吗？ 此操作无法撤消。"
@@ -356,8 +361,8 @@
       "type": "类型"
     },
     "toast": {
-      "errorDelete": "错误删除%{count} log。 | 错误删除%{count}日志。",
-      "successDelete": "成功删除了%{count} log。 | 成功删除了%{count}日志。"
+      "errorDelete": "错误删除了日志。",
+      "successDelete": "成功删除了日志。"
     }
   },
   "pageFirmware":{
