@@ -32,15 +32,12 @@ const WebSocketPlugin = (store) => {
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
       const eventInterface = data.interface;
-      const path = data.path;
 
       if (eventInterface === 'xyz.openbmc_project.State.Host') {
         const { properties: { CurrentHostState } = {} } = data;
         if (CurrentHostState) {
           store.commit('global/setServerStatus', CurrentHostState);
         }
-      } else if (path === '/xyz/openbmc_project/logging') {
-        store.dispatch('eventLog/getEventLogData');
       }
     };
   };
