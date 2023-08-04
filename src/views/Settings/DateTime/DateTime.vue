@@ -1,18 +1,6 @@
 <template>
   <b-container fluid="xl">
     <page-title />
-    <b-row>
-      <b-col md="8" xl="6">
-        <alert variant="info" class="mb-4">
-          <span>
-            {{ $t('pageDateTime.alert.message') }}
-            <b-link to="/profile-settings">
-              {{ $t('pageDateTime.alert.link') }}</b-link
-            >
-          </span>
-        </alert>
-      </b-col>
-    </b-row>
     <page-section>
       <b-row>
         <b-col lg="3">
@@ -30,6 +18,36 @@
           </dl>
         </b-col>
       </b-row>
+    </page-section>
+    <page-section :section-title="$t('pageProfileSettings.timezoneDisplay')">
+      <p>{{ $t('pageProfileSettings.timezoneDisplayDesc') }}</p>
+      <b-row>
+        <b-col md="9" lg="8" xl="9">
+          <b-form-group :label="$t('pageProfileSettings.timezone')">
+            <b-form-radio
+              v-model="form.isUtcDisplay"
+              :value="true"
+              data-test-id="profileSettings-radio-defaultUTC"
+            >
+              {{ $t('pageProfileSettings.defaultUTC') }}
+            </b-form-radio>
+            <b-form-radio
+              v-model="form.isUtcDisplay"
+              :value="false"
+              data-test-id="profileSettings-radio-browserOffset"
+            >
+              {{
+                $t('pageProfileSettings.browserOffset', {
+                  timezone,
+                })
+              }}
+            </b-form-radio>
+          </b-form-group>
+        </b-col>
+      </b-row>
+      <b-button variant="primary" @click="saveTimeZonePrefrenceData">
+        {{ $t('global.action.saveSettings') }}
+      </b-button>
     </page-section>
     <page-section :section-title="$t('pageDateTime.configureSettings')">
       <b-form novalidate @submit.prevent="submitForm">
@@ -197,7 +215,6 @@
 </template>
 
 <script>
-import Alert from '@/components/Global/Alert';
 import IconCalendar from '@carbon/icons-vue/es/calendar/20';
 import PageTitle from '@/components/Global/PageTitle';
 import PageSection from '@/components/Global/PageSection';
@@ -215,7 +232,7 @@ const isoTimeRegex = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 
 export default {
   name: 'DateTime',
-  components: { Alert, IconCalendar, PageTitle, PageSection },
+  components: { IconCalendar, PageTitle, PageSection },
   mixins: [
     BVToastMixin,
     LoadingBarMixin,
@@ -231,6 +248,7 @@ export default {
     return {
       locale: this.$store.getters['global/languagePreference'],
       form: {
+        isUtcDisplay: this.$store.getters['global/isUtcDisplay'],
         configurationSelected: 'manual',
         manual: {
           date: '',
@@ -317,6 +335,13 @@ export default {
     ]).finally(() => this.endLoader());
   },
   methods: {
+    saveTimeZonePrefrenceData() {
+      localStorage.setItem('storedUtcDisplay', this.form.isUtcDisplay);
+      this.$store.commit('global/setUtcTime', this.form.isUtcDisplay);
+      this.successToast(
+        this.$t('pageProfileSettings.toast.successUpdatingTimeZone')
+      );
+    },
     emitChange() {
       if (this.$v.$invalid) return;
       this.$v.$reset(); //reset to re-validate on blur
