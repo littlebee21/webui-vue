@@ -29,7 +29,7 @@
     <table-bmc-manager ref="bmc" />
 
     <!-- Chassis table -->
-    <table-chassis ref="chassis" />
+    <!-- <table-chassis ref="chassis" /> -->
 
     <!-- DIMM slot table -->
     <!-- <table-dimm-slot ref="dimms" /> -->
@@ -56,7 +56,7 @@ import TableSystem from './InventoryTableSystem';
 // import TableDimmSlot from './InventoryTableDimmSlot';
 // import TableFans from './InventoryTableFans';
 import TableBmcManager from './InventoryTableBmcManager';
-import TableChassis from './InventoryTableChassis';
+// import TableChassis from './InventoryTableChassis';
 // import TableProcessors from './InventoryTableProcessors';
 // import TableAssembly from './InventoryTableAssembly';
 import LoadingBarMixin from '@/components/Mixins/LoadingBarMixin';
@@ -74,7 +74,7 @@ export default {
     TableSystem,
     // TableFans,
     TableBmcManager,
-    TableChassis,
+    // TableChassis,
     // TableProcessors,
     // TableAssembly,
     PageSection,
