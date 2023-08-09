@@ -86,14 +86,6 @@
                 <b-form-radio
                   v-model="form.rebootOption"
                   name="reboot-option"
-                  data-test-id="serverPowerOperations-radio-rebootOrderly"
-                  value="orderly"
-                >
-                  {{ $t('pageServerPowerOperations.orderlyReboot') }}
-                </b-form-radio>
-                <b-form-radio
-                  v-model="form.rebootOption"
-                  name="reboot-option"
                   data-test-id="serverPowerOperations-radio-rebootImmediate"
                   value="immediate"
                 >
@@ -113,14 +105,6 @@
               <b-form-group
                 :label="$t('pageServerPowerOperations.shutdownServer')"
               >
-                <b-form-radio
-                  v-model="form.shutdownOption"
-                  name="shutdown-option"
-                  data-test-id="serverPowerOperations-radio-shutdownOrderly"
-                  value="orderly"
-                >
-                  {{ $t('pageServerPowerOperations.orderlyShutdown') }}
-                </b-form-radio>
                 <b-form-radio
                   v-model="form.shutdownOption"
                   name="shutdown-option"
@@ -164,8 +148,8 @@ export default {
   data() {
     return {
       form: {
-        rebootOption: 'orderly',
-        shutdownOption: 'orderly',
+        rebootOption: 'immediate',
+        shutdownOption: 'immediate',
       },
     };
   },
