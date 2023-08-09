@@ -303,6 +303,10 @@
     }
   },
   "pageFactoryReset": {
+    "beginMessage": "factoryReset begin",
+    "begin": "factoryReset info",
+    "verifyMessage": "factoryReset complete",
+    "verify": "verify factory reset",
     "description": "These functions do not perform a secure delete of any sensitive data.",
     "form": {
       "resetOptionsLabel": "Reset options",
@@ -333,7 +337,7 @@
       "resetWarningCheckLabel": "Continue without shutting down the system"
     },
     "toast": {
-      "resetBiosSuccess": "Factory reset of server settings successful.",
+      "resetBiosSuccess": "Factory reset of server settings begin successfully.",
       "resetBiosError": "Factory reset of server settings failed.",
       "resetToDefaultsSuccess": "Factory reset of BMC and server settings successful.",
       "resetToDefaultsError": "Factory reset of BMC and server settings failed."
@@ -866,6 +870,9 @@
   "pageRebootBmc": {
     "lastReboot": "Last BMC reboot",
     "rebootBmc": "Reboot BMC",
+    "verify": "verify Reboot BMC",
+    "verifyMessageComplete": "reboot Complete",
+    "verifyMessageBegin": "reboot begin",
     "rebootInformation": "When you reboot the BMC, your web browser loses contact with the BMC for several minutes. When the BMC is back online, you may need to log in again.",
     "modal": {
       "confirmMessage": "Are you sure you want to reboot the BMC?",

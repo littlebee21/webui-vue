@@ -71,9 +71,20 @@ export default {
         });
     },
     rebootBmc() {
+      this.infoToast(this.$t('pageRebootBmc.verifyMessageBegin'), {
+        title: this.$t('pageRebootBmc.verify'),
+        refreshAction: true,
+      });
+      setTimeout(() => {
+        this.endLoader();
+        this.infoToast(this.$t('pageRebootBmc.verifyMessageComplete'), {
+          title: this.$t('pageRebootBmc.verify'),
+          refreshAction: true,
+        });
+      }, 100000);
       this.$store
         .dispatch('controls/rebootBmc')
-        .then((message) => this.successToast(message))
+        .then((message) => console.log(message))
         .catch(({ message }) => this.errorToast(message));
     },
   },

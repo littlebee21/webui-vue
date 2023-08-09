@@ -78,6 +78,17 @@ export default {
       this.$bvModal.show('modal-reset');
     },
     onOkConfirm() {
+      this.infoToast(this.$t('pageFactoryReset.beginMessage'), {
+        title: this.$t('pageFactoryReset.begin'),
+        refreshAction: true,
+      });
+      setTimeout(() => {
+        this.endLoader();
+        this.infoToast(this.$t('pageFactoryReset.verifyMessage'), {
+          title: this.$t('pageFactoryReset.verify'),
+          refreshAction: true,
+        });
+      }, 360000);
       if (this.resetOption == 'resetBios') {
         this.onResetBiosConfirm();
       } else {
@@ -88,12 +99,12 @@ export default {
       this.$store
         .dispatch('factoryReset/resetBios')
         .then((title) => {
-          this.successToast('', {
+          console.log('', {
             title,
           });
         })
         .catch(({ message }) => {
-          this.errorToast('', {
+          console.log('', {
             title: message,
           });
         });
@@ -102,12 +113,12 @@ export default {
       this.$store
         .dispatch('factoryReset/resetToDefaults')
         .then((title) => {
-          this.successToast('', {
+          console.log('', {
             title,
           });
         })
         .catch(({ message }) => {
-          this.errorToast('', {
+          console.log('', {
             title: message,
           });
         });

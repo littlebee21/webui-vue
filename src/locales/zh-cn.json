@@ -301,6 +301,10 @@
     }
   },
   "pageFactoryReset": {
+    "beginMessage": "恢复出厂设置开始",
+    "begin": "恢复出厂设置信息",
+    "verifyMessage": "恢复出厂设置完成",
+    "verify": "验证恢复出厂设置",
     "description": "这些功能不会执行任何敏感数据的安全删除。",
     "form": {
       "resetOptionsLabel": "重置选项",
@@ -331,7 +335,7 @@
       "resetWarningCheckLabel": "继续不关闭系统"
     },
     "toast": {
-      "resetBiosSuccess": "服务器设置的出厂重置成功。",
+      "resetBiosSuccess": "服务器设置的出厂重置成功开始。",
       "resetBiosError": "服务器设置的出厂重置失败。",
       "resetToDefaultsSuccess": " BMC和服务器设置的工厂重置成功。",
       "resetToDefaultsError": " BMC和服务器设置的出厂重置失败。"
@@ -845,6 +849,9 @@
   "pageRebootBmc": {
     "lastReboot": "上次BMC重新启动",
     "rebootBmc": "重新启动BMC",
+    "verify": "BMC重启验证",
+    "verifyMessageComplete": "BMC重启完成",
+    "verifyMessageBegin": "BMC重启开始",
     "rebootInformation": "重新启动BMC时,您的Web浏览器将失去与BMC的联系几分钟。 当BMC再次启动,您可能需要再次登录。",
     "modal": {
       "confirmMessage": "您确定要重新启动BMC吗？",
