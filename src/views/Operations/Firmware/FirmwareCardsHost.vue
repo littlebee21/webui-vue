@@ -9,8 +9,12 @@
           </p>
         </template>
         <dl class="mb-0">
-          <dt>{{ $t('pageFirmware.cardBodyVersion') }}</dt>
+          <dt>{{ $t('pageFirmware.biosVersion') }}</dt>
           <dd class="mb-0">{{ runningVersion }}</dd>
+          <dt>{{ $t('pageFirmware.hmcodeVersion') }}</dt>
+          <dd class="mb-0">{{ hmcodeVersion }}</dd>
+          <dt>{{ $t('pageFirmware.sromVersion') }}</dt>
+          <dd class="mb-0">{{ sromVersion }}</dd>
         </dl>
       </b-card>
 
@@ -50,6 +54,12 @@ export default {
     },
     runningVersion() {
       return this.$store.getters['firmware/activeHostFirmwareVersion'];
+    },
+    hmcodeVersion() {
+      return this.$store.getters['firmware/hmcodeVersion'];
+    },
+    sromVersion() {
+      return this.$store.getters['firmware/sromVersion'];
     },
     backupVersion() {
       return this.backup?.version || '--';

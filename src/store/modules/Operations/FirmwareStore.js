@@ -11,9 +11,13 @@ const FirmwareStore = {
     applyTime: null,
     tftpAvailable: false,
     activeHostFirmwareVersion: null,
+    hmcodeVersion: null,
+    sromVersion: null,
   },
   getters: {
     activeHostFirmwareVersion: (state) => state.activeHostFirmwareVersion,
+    hmcodeVersion: (state) => state.hmcodeVersion,
+    sromVersion: (state) => state.sromVersion,
     isTftpUploadAvailable: (state) => state.tftpAvailable,
     isSingleFileUploadEnabled: (state) => state.hostFirmware.length === 0,
     activeBmcFirmware: (state) => {
@@ -40,6 +44,9 @@ const FirmwareStore = {
   mutations: {
     setActiveHostFirmwareVersion: (state, activeHostFirmwareVersion) =>
       (state.activeHostFirmwareVersion = activeHostFirmwareVersion),
+    setHmcodeVersion: (state, hmcodeVersion) =>
+      (state.hmcodeVersion = hmcodeVersion),
+    setSromVersion: (state, sromVersion) => (state.sromVersion = sromVersion),
     setActiveBmcFirmwareId: (state, id) => (state.bmcActiveFirmwareId = id),
     setActiveHostFirmwareId: (state, id) => (state.hostActiveFirmwareId = id),
     setBmcFirmware: (state, firmware) => (state.bmcFirmware = firmware),
@@ -52,9 +59,11 @@ const FirmwareStore = {
     async firmwareVersionGet({ commit }) {
       return await api
         .get('/redfish/v1/firmwareVersionGet')
-        .then(({ data: { version } }) => {
+        .then(({ data }) => {
           console.log('firmware Version got');
-          commit('setActiveHostFirmwareVersion', version);
+          commit('setActiveHostFirmwareVersion', data.bios_version);
+          commit('setHmcodeVersion', data.hmcode_version);
+          commit('setSromVersion', data.srom_version);
         })
         .catch((error) => console.log(error));
     },
