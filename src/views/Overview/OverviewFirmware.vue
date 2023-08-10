@@ -10,10 +10,14 @@
           <dd>{{ dataFormatter(runningVersion) }}</dd>
           <!-- <dt>{{ $t('pageOverview.backupVersion') }}</dt> -->
           <!-- <dd>{{ dataFormatter(backupVersion) }}</dd> -->
+          <dt>{{ $t('pageFirmware.hmcodeVersion') }}</dt>
+          <dd class="mb-0">{{ hmcodeVersion }}</dd>
         </dl>
       </b-col>
       <b-col sm="6">
         <dl>
+          <dt>{{ $t('pageFirmware.sromVersion') }}</dt>
+          <dd class="mb-0">{{ sromVersion }}</dd>
           <!-- <dt>{{ $t('pageOverview.firmwareVersion') }}</dt> -->
           <!-- <dd>{{ dataFormatter(firmwareVersion) }}</dd> -->
         </dl>
@@ -45,6 +49,12 @@ export default {
       activeBmcFirmware() {
         return this.$store.getters[`firmware/activeBmcFirmware`];
       },
+      hmcodeVersion() {
+        return this.$store.getters['firmware/hmcodeVersion'];
+      },
+      sromVersion() {
+        return this.$store.getters['firmware/sromVersion'];
+      },
       firmwareVersion() {
         return this.server?.firmwareVersion;
       },
@@ -54,6 +64,7 @@ export default {
     }),
   },
   created() {
+    this.$store.dispatch('firmware/firmwareVersionGet');
     this.$store.dispatch('firmware/getFirmwareInformation').finally(() => {
       this.$root.$emit('overview-firmware-complete');
     });
