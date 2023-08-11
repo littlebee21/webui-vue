@@ -17,14 +17,6 @@
         >
         </b-form-select>
       </b-form-group>
-      <b-form-checkbox
-        v-model="form.oneTimeBoot"
-        class="mb-4"
-        :disabled="form.bootOption === 'None'"
-        @change="$v.form.oneTimeBoot.$touch()"
-      >
-        {{ $t('pageServerPowerOperations.bootSettings.enableOneTimeBoot') }}
-      </b-form-checkbox>
       <b-button variant="primary" type="submit" class="mb-3">
         {{ $t('global.action.save') }}
       </b-button>
