@@ -1044,21 +1044,22 @@
     "defaultDeviceName": "虚拟媒体设备",
     "start": "开始",
     "stop": "停止",
-    "virtualMediaSubTitleFirst": "将镜像保存在网络浏览器中",
-    "virtualMediaSubTitleSecond": "从外部服务器加载镜像",
+    "virtualMediaSubTitleFirst": "从网络浏览器中加载镜像",
+    "virtualMediaSubTitleSecond": "从外部服务器种加载镜像",
     "modal": {
       "password": "密码",
       "serverUri": "外部服务器URI",
-      "title": "旧模式配置",
+      "title": "legacy模式配置",
       "username": "用户名"
     },
     "toast": {
-      "errorMounting": "错误安装",
-      "errorReadingFile": "错误读取文件。 关闭服务器。",
-      "errorUnmounting": "错误卸载",
-      "serverRunning": "服务器运行",
-      "serverClosedSuccessfully": "服务器成功关闭",
-      "serverClosedWithErrors": "服务器因错误关闭"
+      "errorMounting": "安装错误",
+      "errorReadingFile": "读取文件错误。 关闭服务器。",
+      "errorUnmounting": "卸载错误",
+      "serverRunning": "ISO挂载成功, 服务器运行",
+      "serverConnectionEstablished": "服务器连接已建立",
+      "serverClosedSuccessfully": "ISO挂载停止, 服务器成功关闭",
+      "serverClosedWithErrors": "ISO挂载停止, 服务器因错误关闭"
     }
   },
   "pagePolicies":{

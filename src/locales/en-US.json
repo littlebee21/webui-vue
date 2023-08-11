@@ -1090,10 +1090,10 @@
       "errorMounting": "Error mounting",
       "errorReadingFile": "Error reading file. Closing server.",
       "errorUnmounting": "Error unmounting",
-      "serverRunning": "Server running",
+      "serverRunning": "ISO mount success , Server running",
       "serverConnectionEstablished": "Server connection established",
-      "serverClosedSuccessfully": "Server closed successfully",
-      "serverClosedWithErrors": "Server closed with errors"
+      "serverClosedSuccessfully": "ISO mount stop, Server closed successfully",
+      "serverClosedWithErrors": "ISO mount stop, Server closed with errors"
     }
   },
   "countries": {
