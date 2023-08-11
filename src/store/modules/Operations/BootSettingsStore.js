@@ -36,7 +36,9 @@ const BootSettingsStore = {
         .then(({ data: { Boot } }) => {
           commit(
             'setBootSourceOptions',
-            Boot['BootSourceOverrideTarget@Redfish.AllowableValues']
+            Boot['BootSourceOverrideTarget@Redfish.AllowableValues'].filter(
+              (item) => item !== 'Diags'
+            )
           );
           commit('setOverrideEnabled', Boot.BootSourceOverrideEnabled);
           commit('setBootSource', Boot.BootSourceOverrideTarget);
