@@ -71,11 +71,12 @@ const ControlStore = {
         })
         .catch((error) => console.log(error));
     },
-    async rebootBmc({ dispatch }) {
+    async rebootBmc({ dispatch, commit }) {
       const data = { ResetType: 'GracefulRestart' };
       return await api
         .post('/redfish/v1/Managers/bmc/Actions/Manager.Reset', data)
         .then(() => dispatch('getLastBmcRebootTime'))
+        .then(() => commit('authentication/logout'))
         .then(() => i18n.t('pageRebootBmc.toast.successRebootStart'))
         .catch((error) => {
           console.log(error);
