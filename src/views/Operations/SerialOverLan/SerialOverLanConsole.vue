@@ -138,6 +138,42 @@ export default {
         })
         .catch((error) => console.log(error));
     },
+    // 页面刷新填充旧的数据
+    fillTermSystem() {
+      Axios({
+        method: 'get',
+        url: '/redfish/v1/downloadfile/systemSolLog',
+        responseType: 'blob',
+      })
+        .then((response) => {
+          const reader = new FileReader();
+          const blob = new Blob([response.data]);
+          reader.readAsText(blob);
+
+          reader.onload = () => {
+            console.log('response.data.text()', reader.result);
+            this.term.write(reader.result);
+            this.term.write('over');
+          };
+        })
+        .catch((error) => console.log(error));
+    },
+    // 页面刷新填充旧的数据
+    fillTermAudit() {
+      Axios({
+        method: 'get',
+        url: '/redfish/v1/downloadfile/biosSolLog',
+        responseType: 'arraybuffer',
+      })
+        .then((response) => {
+          const fileContent = String.fromCharCode.apply(
+            null,
+            new Uint8Array(response.data)
+          );
+          this.term1.write(fileContent);
+        })
+        .catch((error) => console.log(error));
+    },
     openTerminal() {
       const token = this.$store.getters['authentication/token'];
 
@@ -152,6 +188,7 @@ export default {
         fontFamily:
           'SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
       });
+      this.fillTermSystem();
 
       const attachAddon = new AttachAddon(this.ws);
       this.term.loadAddon(attachAddon);
@@ -204,6 +241,8 @@ export default {
         fontFamily:
           'SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
       });
+
+      this.fillTermAudit();
 
       const attachAddon = new AttachAddon(this.ws1);
       this.term1.loadAddon(attachAddon);
