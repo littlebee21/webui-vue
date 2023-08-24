@@ -69,6 +69,9 @@
           <b-form-radio class="mb-1" value="8m_bios">
             {{ $t('pageFirmware.8m_bios') }}
           </b-form-radio>
+          <b-form-radio class="mb-1" value="bmcImageMtd">
+            {{ $t('pageFirmware.bmc_image_mtd') }}
+          </b-form-radio>
           <b-form-radio class="mb-3" value="bmc_image">
             {{ $t('pageFirmware.bmc_image') }}
           </b-form-radio>
@@ -173,6 +176,39 @@ export default {
         this.dispatchTftpUpload(timerId);
       }
     },
+    // bmc update achieve 2023-0824-14
+    async newUpdateBMCImage() {
+      // begin
+      await this.$store.dispatch('firmware/uploadFile', {
+        file: null,
+        firmwareContent: 'bmcImageMtdBegin',
+      });
+
+      // send content
+      const chunkSize = 20 * 1024 * 1024;
+      let offset = 0;
+      while (offset < this.file.size) {
+        const fileChunk = this.file.slice(offset, offset + chunkSize);
+        await this.$store
+          .dispatch('firmware/uploadFile', {
+            file: fileChunk,
+            firmwareContent: 'bmcImageMtdContent',
+          })
+          .then((message) => {
+            offset += chunkSize;
+            console.log(message, 'update result');
+          });
+      }
+      // check and update
+      await this.$store
+        .dispatch('firmware/uploadFile', {
+          file: null,
+          firmwareContent: 'bmcImageMtdCheckUpdate',
+        })
+        .then((message) => {
+          this.infoToast(message, 'update result');
+        });
+    },
     dispatchWorkstationUpload(timerId) {
       if (this.firmwareContent == 'bmc_image') {
         this.$store.dispatch('firmware/uploadFirmware', this.file).catch(() => {
@@ -180,6 +216,8 @@ export default {
           // this.errorToast(message);
           clearTimeout(timerId);
         });
+      } else if (this.firmwareContent == 'bmcImageMtd') {
+        this.newUpdateBMCImage();
       } else {
         this.$store
           .dispatch('firmware/uploadFile', {
