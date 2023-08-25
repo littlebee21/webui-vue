@@ -85,6 +85,15 @@
         </page-section>
       </b-col>
     </b-row>
+    <b-row class="mb-4">
+      <b-col md="6">
+        <page-section
+          :section-title="$t('pageVirtualMedia.virtualMediaSubTitleFirst')"
+        >
+          <ndb-server />
+        </page-section>
+      </b-col>
+    </b-row>
     <modal-configure-connection
       :connection="modalConfigureConnection"
       @ok="saveConnection"
@@ -100,10 +109,17 @@ import LoadingBarMixin from '@/components/Mixins/LoadingBarMixin';
 import ModalConfigureConnection from './ModalConfigureConnection';
 import NbdServer from '@/utilities/NBDServer';
 import FormFile from '@/components/Global/FormFile';
+import NdbServer from './NDBServer.vue';
 
 export default {
   name: 'VirtualMedia',
-  components: { PageTitle, PageSection, ModalConfigureConnection, FormFile },
+  components: {
+    PageTitle,
+    PageSection,
+    ModalConfigureConnection,
+    FormFile,
+    NdbServer,
+  },
   mixins: [BVToastMixin, LoadingBarMixin],
   data() {
     return {
